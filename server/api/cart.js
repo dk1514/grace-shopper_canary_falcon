@@ -13,9 +13,9 @@ router.get('/', async (req, res, next) => {
 })
 
 // get one cart
-router.get('/', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    const {data} = await Cart.findAll()
+    const {data} = await Cart.findByPk(req.params.id)
     res.json(data)
   } catch (err) {
     next(err)
