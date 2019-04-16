@@ -29,7 +29,7 @@ router.post('/', async (req, res, next) => {
   try {
     req.session.cart = req.body
     req.session.save(req.session)
-    console.log(object);
+    console.log(req.session);
     const cart = await Cart.create(req.body)
     res.status(201).json(cart)
   } catch (error) {
