@@ -27,6 +27,9 @@ router.get('/:id', async (req, res, next) => {
 // POST product to Cart
 router.post('/', async (req, res, next) => {
   try {
+    req.session.cart = req.body
+    req.session.save(req.session)
+    console.log(object);
     const cart = await Cart.create(req.body)
     res.status(201).json(cart)
   } catch (error) {
