@@ -12,7 +12,7 @@ describe('Cart routes', () => {
   })
 
   describe('/api/cart/', () => {
-    const quantity = 5
+    // const quantity = 5
 
     beforeEach(() => {
       return Cart.create({
@@ -24,9 +24,9 @@ describe('Cart routes', () => {
       const res = await request(app)
         .get('/api/cart')
         .expect(200)
-
-      expect(res.body.quantity).to.be.an('a number')
-      expect(res.body.quantity).to.be.equal(5)
+      console.log('res.body: ', res.body)
+      expect(res.body).to.be.an('array')
+      expect(res.body[0].quantity).to.be.equal(5)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')

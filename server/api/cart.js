@@ -5,7 +5,7 @@ module.exports = router
 // GET all products in Cart
 router.get('/', async (req, res, next) => {
   try {
-    const {data} = await Cart.findAll()
+    const data = await Cart.findAll()
     res.json(data)
   } catch (err) {
     next(err)
@@ -15,7 +15,9 @@ router.get('/', async (req, res, next) => {
 // get one cart
 router.get('/:id', async (req, res, next) => {
   try {
-    const {data} = await Cart.findByPk(req.params.id)
+    console.log('in GET route')
+    const data = await Cart.findByPk(req.params.id)
+    console.log('data: ', data)
     res.json(data)
   } catch (err) {
     next(err)
