@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get one
+// get one cart
 router.get('/', async (req, res, next) => {
   try {
     const {data} = await Cart.findAll()
