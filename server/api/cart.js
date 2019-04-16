@@ -12,6 +12,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// get one
+router.get('/', async (req, res, next) => {
+  try {
+    const {data} = await Cart.findAll()
+    res.json(data)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // POST product to Cart
 router.post('/', async (req, res, next) => {
   try {
