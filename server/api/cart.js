@@ -12,12 +12,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get one cart
+// GET one product from Cart
 router.get('/:id', async (req, res, next) => {
   try {
-    console.log('in GET route')
     const data = await Cart.findByPk(req.params.id)
-    console.log('data: ', data)
     res.json(data)
   } catch (err) {
     next(err)
@@ -29,7 +27,6 @@ router.post('/', async (req, res, next) => {
   try {
     req.session.cart = req.body
     req.session.save(req.session)
-    console.log(req.session);
     const cart = await Cart.create(req.body)
     res.status(201).json(cart)
   } catch (error) {
