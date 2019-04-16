@@ -1,23 +1,28 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-// import 'bulma/css/bulma.css'
+import {connect} from 'react-redux'
+import {getCartThunk} from '../store/cart'
 
 class Cart extends Component {
-    constructor() {
-        super()
-        this.state = {
-            quantity: 0
-        }
-    }
+    // constructor(props) {
+    //     super(props)
+    //     // this.state = {
+    //     //     quantity: 0
+    //     // }
+    // }
 
-    async componentDidMount() {
-        try {
-            const {data} = await axios.get('/api/cart/1')
-            this.setState({quantity: data.quantity})
-        } catch(err) {console.error(err)}
+     componentDidMount() {
+        // try {
+        //     const {data} = await axios.get('/api/cart/1')
+        //     this.setState({quantity: data.quantity})
+        // } catch(err) {console.error(err)}
+        this.props.getCartThunk()
     }
 
     render() {
+        console.log('props', this.props)
+        console.log('cart', this.props.cart)
+        console.log('cart in cart', this.props.cart.cart[0])
         return (
             <div>
                 <h1 className='title'>Shopping Cart</h1>
@@ -38,6 +43,22 @@ class Cart extends Component {
                             </th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Product
+                            </td>
+                            <td>
+                                Image
+                            </td>
+                            <td>
+                                {this.props.cart.quantity}
+                            </td>
+                            <td>
+                                Price
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div>
                     Total: $
@@ -50,4 +71,12 @@ class Cart extends Component {
     }
 }
 
-export default Cart
+const mapStateToProps = (state) => ({
+    cart: state.cart
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getCartThunk: () => dispatch(getCartThunk())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

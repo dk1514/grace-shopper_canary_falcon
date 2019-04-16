@@ -23,9 +23,9 @@ const removeCart = cart => ({type: REMOVE_CART, cart})
 /**
  * THUNK CREATORS
  */
-export const setCartThunk = () => async dispatch => {
+export const getCartThunk = () => async dispatch => {
   try {
-    const res = await axios.get('/api/cart')
+    const res = await axios.get('/api/cart/')
     dispatch(setCart(res.data))
   } catch (err) {
     console.error(err)
