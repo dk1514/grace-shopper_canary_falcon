@@ -1,18 +1,35 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import setSingleHatThunk from '../store/hat'
+import setSingleHatThunk from '../store/singleHatReducer'
 
 class SingleHat extends Component {
+  componentDidMount() {
+    this.props.loadSingleHat()
+  }
   render() {
-    console.log('state', this)
-    return <h1> Here is a single hat!</h1>
+    return (
+      <div>
+        <h1>This is a single hat</h1>
+        {/* <ul>
+          <li>{this.props.hatinfo.price}</li>
+
+        </ul> */}
+      </div>
+    )
   }
 }
 
 const mSTP = state => {
+  // console.log('singlehat', state)
   return {
-    hat: state.hat
+    singleHat: state.hats
   }
 }
 
-export default connect(mSTP)(SingleHat)
+const mDTP = (dispatch, ownProps) => {
+  return {
+    loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id))
+  }
+}
+
+export default connect(mSTP, mDTP)(SingleHat)

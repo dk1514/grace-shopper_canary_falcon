@@ -3,6 +3,7 @@ import axios from 'axios'
 import {setHatsThunk} from '../store/hat'
 import {connect} from 'react-redux'
 import SingleHat from './SingleHat'
+import {Link} from 'react-router-dom'
 
 class AllHats extends Component {
   componentDidMount() {
@@ -13,9 +14,18 @@ class AllHats extends Component {
       <div>
         <h1> Here are all our hats!</h1>
         <ul>
-          {this.props.hats.hats.map(hat => (
+          {this.props.allHats.hats.map(hat => (
             <li key={hat.id}>
-              <SingleHat />
+              {/* <a href="#">
+                <img src={} alt="hatimage" />
+              </a> */}
+              <Link to={`/hats/${hat.id}`}>
+                <ul>
+                  <li>{hat.name}</li>
+                  <li>{hat.price}</li>
+                  <li>{hat.imageUrl}</li>
+                </ul>
+              </Link>
             </li>
           ))}
         </ul>
@@ -25,13 +35,16 @@ class AllHats extends Component {
 }
 
 const mapSTP = state => {
+  console.log('allhatsstate', state)
   return {
-    hats: state.hat
+    allHats: state.hat
   }
 }
 
-const mapDTP = dispatch => ({
-  loadHats: () => dispatch(setHatsThunk())
-})
+const mapDTP = dispatch => {
+  return {
+    loadHats: () => dispatch(setHatsThunk())
+  }
+}
 
 export default connect(mapSTP, mapDTP)(AllHats)

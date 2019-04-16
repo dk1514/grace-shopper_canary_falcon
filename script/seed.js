@@ -21,7 +21,9 @@ async function seed() {
     price: 19.99,
     manufacturer: 'hatman',
     description: 'this is a red baseball hat',
-    quantity: 500
+    quantity: 500,
+    imageUrl:
+      '/Users/ericchan/Fullstack_Senior/grace-shopper_canary_falcon/public/hatimages/redbaseballcap.jpg'
   })
 
   const hat2 = await Hats.create({
@@ -32,7 +34,9 @@ async function seed() {
     price: 19.99,
     manufacturer: 'hatman',
     description: 'this is a green baseball hat',
-    quantity: 500
+    quantity: 500,
+    imageUrl:
+      '/Users/ericchan/Fullstack_Senior/grace-shopper_canary_falcon/public/hatimages/greenbaseballcap.jpg'
   })
 
   const hat3 = await Hats.create({
@@ -43,7 +47,9 @@ async function seed() {
     price: 499.99,
     manufacturer: 'hatmaster',
     description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
-    quantity: 1
+    quantity: 1,
+    imageUrl:
+      '/Users/ericchan/Fullstack_Senior/grace-shopper_canary_falcon/public/hatimages/fedora.jpg'
   })
 
   const hat4 = await Hats.create({
@@ -54,7 +60,9 @@ async function seed() {
     price: 49.99,
     manufacturer: 'cowboy nation',
     description: 'this is a cowboy bebop',
-    quantity: 500
+    quantity: 500,
+    imageUrl:
+      '/Users/ericchan/Fullstack_Senior/grace-shopper_canary_falcon/public/hatimages/cowboyhat.jpg'
   })
 
   console.log(`seeded ${users.length} users`)

@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import hat from './hat'
+import singleHatReducer from './singleHatReducer'
 
-const reducer = combineReducers({user, hat})
+const reducer = combineReducers({user, hat, singleHatReducer})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
