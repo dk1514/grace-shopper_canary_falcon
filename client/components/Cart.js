@@ -27,8 +27,8 @@ class Cart extends Component {
       console.log('nothing in cart yet!')
       return <div />
     }
-    console.log('props', this.props)
-    console.log('cart', this.props.cart)
+    // console.log('props', this.props)
+    // console.log('cart', this.props.cart)
     // console.log('cart in cart', this.props.cart.cart[0])
     // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
 

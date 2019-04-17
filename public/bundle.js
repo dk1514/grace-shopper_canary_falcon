@@ -97,11 +97,13 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
-/* harmony import */ var _components_AllHats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AllHats */ "./client/components/AllHats.js");
-/* harmony import */ var _components_SingleHat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/SingleHat */ "./client/components/SingleHat.js");
-/* harmony import */ var _components_FrontPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/FrontPage */ "./client/components/FrontPage.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
+/* harmony import */ var _components_AllHats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AllHats */ "./client/components/AllHats.js");
+/* harmony import */ var _components_SingleHat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SingleHat */ "./client/components/SingleHat.js");
+/* harmony import */ var _components_FrontPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/FrontPage */ "./client/components/FrontPage.js");
+
 
 
 
@@ -110,21 +112,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Switch, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_2__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/",
-    component: _components_FrontPage__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, {
+    component: _components_FrontPage__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/hats",
-    component: _components_AllHats__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, {
+    component: _components_AllHats__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/hats/:id",
-    component: _components_SingleHat__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, {
+    component: _components_SingleHat__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/",
-    component: _components_AllHats__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_AllHats__WEBPACK_IMPORTED_MODULE_4__["default"]
   })));
 };
 
@@ -333,11 +335,11 @@ function (_Component) {
       if (!this.state.loaded) {
         console.log('nothing in cart yet!');
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-      }
-
-      console.log('props', this.props);
-      console.log('cart', this.props.cart); // console.log('cart in cart', this.props.cart.cart[0])
+      } // console.log('props', this.props)
+      // console.log('cart', this.props.cart)
+      // console.log('cart in cart', this.props.cart.cart[0])
       // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
+
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
