@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {getCartThunk} from '../store/cart'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   constructor(props) {
@@ -54,7 +55,9 @@ class Cart extends Component {
         </table>
         <div>Total: $</div>
         <div>
-          <button className="button is-primary">Checkout</button>
+            <Link to='/success'>
+                <button className="button is-primary">Submit Order</button>
+            </Link>
         </div>
       </div>
     )
