@@ -11,7 +11,11 @@ const REMOVE_CART = 'REMOVE_CART'
 /**
  * INITIAL STATE
  */
-const initialState = {cart: {}}
+const initialState = {
+  items: [],
+  addedItems: [],
+  total: 0
+}
 
 /**
  * ACTION CREATORS
@@ -34,7 +38,7 @@ export const getCartThunk = () => async dispatch => {
 
 export const updateCartThunk = id => async dispatch => {
   try {
-    const res = await axios.put(`api/cart/${id}`)
+    const res = await axios.put(`api/order/${id}`)
     dispatch(updateCart(res.data))
   } catch (err) {
     console.error(err)
@@ -43,7 +47,7 @@ export const updateCartThunk = id => async dispatch => {
 
 export const removeCartThunk = id => async dispatch => {
   try {
-    await axios.delete(`api/cart/${id}`)
+    await axios.delete(`api/order/${id}`)
   } catch (err) {
     console.error(err)
   }

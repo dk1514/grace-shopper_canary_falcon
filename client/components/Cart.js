@@ -29,8 +29,8 @@ class Cart extends Component {
     }
     console.log('props', this.props)
     console.log('cart', this.props.cart)
-    console.log('cart in cart', this.props.cart.cart[0])
-    console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
+    // console.log('cart in cart', this.props.cart.cart[0])
+    // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
 
     return (
       <div>
@@ -48,7 +48,7 @@ class Cart extends Component {
             <tr>
               <td>Product</td>
               <td>Image</td>
-              <td>{this.props.cart.cart[0].quantity}</td>
+              <td>Quantity</td>
               <td>Price</td>
             </tr>
           </tbody>

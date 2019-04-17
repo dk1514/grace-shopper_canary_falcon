@@ -1,34 +1,34 @@
 const router = require('express').Router()
-const {Cart} = require('../db/models')
+const {Order} = require('../db/models')
 module.exports = router
 
-// GET all products in Cart
+// GET all products in Order
 router.get('/', async (req, res, next) => {
   try {
-    const data = await Cart.findAll()
+    const data = await Order.findAll()
     res.json(data)
   } catch (err) {
     next(err)
   }
 })
 
-// GET one product from Cart
+// GET one product from Order
 router.get('/:id', async (req, res, next) => {
   try {
-    const data = await Cart.findByPk(req.params.id)
+    const data = await Order.findByPk(req.params.id)
     res.json(data)
   } catch (err) {
     next(err)
   }
 })
 
-// POST product to Cart
+// POST product to Order
 router.post('/', async (req, res, next) => {
   try {
-    req.session.cart = req.body
+    req.session.order = req.body
     req.session.save(req.session)
-    const cart = await Cart.create(req.body)
-    res.status(201).json(cart)
+    const order = await Order.create(req.body)
+    res.status(201).json(order)
   } catch (error) {
     next(error)
   }
@@ -37,18 +37,18 @@ router.post('/', async (req, res, next) => {
 // PUT to update products/quantities in CART
 router.put('/:id', async (req, res, next) => {
   try {
-    const updateCart = await Cart.findByPk(req.params.id)
-    updateCart.update(req.body)
-    res.json(updateCart)
+    const updateOrder = await Order.findByPk(req.params.id)
+    updateOrder.update(req.body)
+    res.json(updateOrder)
   } catch (error) {
     next(error)
   }
 })
 
-// DELETE product from Cart
+// DELETE product from Order
 router.delete('/:id', async (req, res, next) => {
   try {
-    await Cart.destroy({
+    await Order.destroy({
       where: {
         id: req.params.id
       }

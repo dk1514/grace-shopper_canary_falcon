@@ -1,5 +1,6 @@
 const User = require('./user')
-const Cart = require('./cart')
+const Order = require('./order')
+const OrderHat = require('./orderHat')
 const Hat = require('./hat')
 
 /**
@@ -16,10 +17,15 @@ const Hat = require('./hat')
  * instead of: const User = require('../db/models/user')
  */
 
-Cart.hasMany(Hat)
-Hat.belongsTo(Cart)
+Order.belongsToMany(Hat, {through: OrderHat})
+Hat.belongsToMany(Order, {through: OrderHat})
+
+User.hasMany(Order)
+Order.belongsTo(User)
+
 module.exports = {
   User,
-  Cart,
+  Order,
+  OrderHat,
   Hat
 }
