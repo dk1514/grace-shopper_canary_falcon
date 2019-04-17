@@ -20,6 +20,9 @@ const Hat = require('./hat')
 Order.belongsToMany(Hat, {through: OrderHat})
 Hat.belongsToMany(Order, {through: OrderHat})
 
+User.hasMany(Order)
+Order.belongsTo(User)
+
 module.exports = {
   User,
   Order,
