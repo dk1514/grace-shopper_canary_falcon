@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Cart = db.define('cart', {
-    products: {
+const Order = db.define('order', {
+    items: {
         type: Sequelize.ARRAY(Sequelize.STRING)
     },
     quantity: {
@@ -10,7 +10,15 @@ const Cart = db.define('cart', {
     },
     total: {
         type: Sequelize.DECIMAL
+    },
+    orderSubmitted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 })
 
-module.exports = Cart
+Order.getTotal = function() {
+    // return 
+}
+
+module.exports = Order

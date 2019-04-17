@@ -1,5 +1,5 @@
 const User = require('./user')
-const Cart = require('./cart')
+const Order = require('./order')
 const Hat = require('./hat')
 
 /**
@@ -17,6 +17,6 @@ const Hat = require('./hat')
  */
 module.exports = {
   User,
-  Cart,
+  Order,
   Hat
 }
