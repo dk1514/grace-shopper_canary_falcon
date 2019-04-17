@@ -8,6 +8,8 @@ import Cart from './components/Cart'
 import OrderSuccess from './components/OrderSuccess';
 import FrontPage from './components/FrontPage'
 import AllHats from './components/AllHats'
+import SingleHat from './components/SingleHat'
+
 
 /**
  * COMPONENT
@@ -29,6 +31,9 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route path="/success" component={OrderSuccess} />
+        <Route exact path="/hats" component={AllHats} />
+        <Route path="/hats/:id" component={SingleHat} />
+        <Route exact path="/" component={AllHats} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -36,6 +41,9 @@ class Routes extends Component {
             <Route path="/hats" component={AllHats} />
             <Route path="/cart" component={Cart} />
             <Route path="/success" component={OrderSuccess} />
+            <Route exact path="/hats" component={AllHats} />
+            <Route path="/hats/:id" component={SingleHat} />
+            <Route exact path="/" component={AllHats} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

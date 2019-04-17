@@ -11,19 +11,14 @@ class AllHats extends Component {
   }
   render() {
     return (
-      <div>
-        <h1> Here are all our hats!</h1>
-        <ul>
+      <div id="AllHatsComponent">
+        <ul id="hatList">
           {this.props.allHats.hats.map(hat => (
             <li key={hat.id}>
-              <a href="#">
-                <img src={hat.imageUrl} alt="hatimage" />
-              </a>
               <Link to={`/hats/${hat.id}`}>
-                <ul>
-                  <li>{hat.name}</li>
-                  <li>{hat.price}</li>
-                </ul>
+                <h1>{hat.name}</h1>
+                <img id="hatImage" src={hat.imageUrl} alt="hatimage" />
+                <h1>${hat.price}</h1>
               </Link>
             </li>
           ))}
