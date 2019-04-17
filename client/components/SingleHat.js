@@ -14,8 +14,8 @@ class SingleHat extends Component {
   render() {
     return (
       <div>
-        <Cart />
-        <h1>This is a single hat</h1>
+        {/* <Cart /> */}
+        <h1>{this.props.singleHat.name}</h1>
         <img src={this.props.singleHat.imageUrl} />
         <ul>
           <li>Name: {this.props.singleHat.name}</li>
