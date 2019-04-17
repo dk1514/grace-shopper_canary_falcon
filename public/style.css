@@ -19,3 +19,26 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* #AllHatsComponent {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+}
+#hatList {
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+#hatImage {
+  display: block;
+  max-width: 230px;
+  max-height: 95px;
+  width: auto;
+  height: auto;
+} */
