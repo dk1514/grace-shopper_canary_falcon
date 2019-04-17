@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Cart from './components/Cart'
 import OrderSuccess from './components/OrderSuccess';
+import FrontPage from './components/FrontPage'
+import AllHats from './components/AllHats'
 
 /**
  * COMPONENT
@@ -21,6 +23,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route path="/home" component={FrontPage} />
+        <Route path="/hats" component={AllHats} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
@@ -29,6 +33,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/hats" component={AllHats} />
             <Route path="/cart" component={Cart} />
             <Route path="/success" component={OrderSuccess} />
           </Switch>

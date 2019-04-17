@@ -34,7 +34,7 @@ export const getCartThunk = () => async dispatch => {
 
 export const updateCartThunk = id => async dispatch => {
   try {
-    const res = await axios.put(`api/cart/${id}`)
+    const res = await axios.put(`api/order/${id}`)
     dispatch(updateCart(res.data))
   } catch (err) {
     console.error(err)
