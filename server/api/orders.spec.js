@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const Ordee = db.model('order')
+const Order = db.model('order')
 
 describe('Cart routes', () => {
   beforeEach(() => {
