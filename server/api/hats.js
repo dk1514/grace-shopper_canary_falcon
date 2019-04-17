@@ -23,3 +23,14 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const selectedHat = await Hat.findByPk(req.params.id)
+    //only want to update quant
+    const updatedSelectedHat = await selectedHat.update(req.body)
+    res.json(updatedSelectedHat)
+  } catch (error) {
+    next(error)
+  }
+})
