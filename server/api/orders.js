@@ -26,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     req.session.order = req.body
-    req.session.save(req.session)
+    // req.session.save(req.session)
     const order = await Order.create(req.body)
     res.status(201).json(order)
   } catch (error) {
