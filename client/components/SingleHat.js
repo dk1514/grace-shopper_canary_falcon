@@ -20,6 +20,9 @@ class SingleHat extends Component {
           <li>Price: ${this.props.singleHat.price}</li>
           <li>Quantity: {this.props.singleHat.quantity}</li>
         </ul>
+        <button type="submit">
+          Add to Cart
+        </button>
       </div>
     )
   }

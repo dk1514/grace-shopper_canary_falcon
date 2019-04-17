@@ -1,9 +1,6 @@
 const User = require('./user')
-<<<<<<< HEAD
 const Cart = require('./cart')
-=======
 const Hat = require('./hat')
->>>>>>> master
 
 /**
  * If we had any associations to make, this would be a great place to put them!
