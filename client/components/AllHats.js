@@ -16,14 +16,13 @@ class AllHats extends Component {
         <ul>
           {this.props.allHats.hats.map(hat => (
             <li key={hat.id}>
-              {/* <a href="#">
-                <img src={} alt="hatimage" />
-              </a> */}
+              <a href="#">
+                <img src={hat.imageUrl} alt="hatimage" />
+              </a>
               <Link to={`/hats/${hat.id}`}>
                 <ul>
                   <li>{hat.name}</li>
                   <li>{hat.price}</li>
-                  <li>{hat.imageUrl}</li>
                 </ul>
               </Link>
             </li>
