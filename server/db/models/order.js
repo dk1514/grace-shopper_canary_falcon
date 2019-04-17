@@ -2,16 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-    items: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-    },
-    quantity: {
-        type: Sequelize.INTEGER
-    },
-    total: {
-        type: Sequelize.DECIMAL
-    },
-    orderSubmitted: {
+    isSubmitted: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     }
