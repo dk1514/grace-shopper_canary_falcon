@@ -8,8 +8,4 @@ const Order = db.define('order', {
     }
 })
 
-Order.getTotal = function() {
-    // return 
-}
-
 module.exports = Order
