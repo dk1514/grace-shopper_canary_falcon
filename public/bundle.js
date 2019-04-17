@@ -330,13 +330,13 @@ function (_Component) {
 
       console.log('props', this.props);
       console.log('cart', this.props.cart);
-      console.log('cart in cart', this.props.cart.cart[0]);
-      console.log('quantity in cart in cart', this.props.cart.cart[0].quantity);
+      console.log('cart in cart', this.props.cart.cart[0]); // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
       }, "Shopping Cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Quantity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.props.cart.cart[0].quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Price")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Total: $"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Quantity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Quantity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Price")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Total: $"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
         to: "/success"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button is-primary"
