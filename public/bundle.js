@@ -329,8 +329,8 @@ function (_Component) {
       }
 
       console.log('props', this.props);
-      console.log('cart', this.props.cart);
-      console.log('cart in cart', this.props.cart.cart[0]); // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
+      console.log('cart', this.props.cart); // console.log('cart in cart', this.props.cart.cart[0])
+      // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title"
@@ -682,7 +682,9 @@ __webpack_require__.r(__webpack_exports__);
 var Navbar = function Navbar(_ref) {
   var handleClick = _ref.handleClick,
       isLoggedIn = _ref.isLoggedIn;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BOILERMAKER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/home"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/hats"
@@ -1040,7 +1042,9 @@ var REMOVE_CART = 'REMOVE_CART';
  */
 
 var initialState = {
-  cart: {}
+  items: [],
+  addedItems: [],
+  total: 0
   /**
    * ACTION CREATORS
    */
@@ -1167,7 +1171,7 @@ var removeCartThunk = function removeCartThunk(id) {
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("api/cart/".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("api/order/".concat(id));
 
               case 3:
                 _context3.next = 8;
