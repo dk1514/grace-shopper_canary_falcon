@@ -29,7 +29,7 @@ const removeCart = cart => ({type: REMOVE_CART, cart})
  */
 export const getCartThunk = () => async dispatch => {
   try {
-    const res = await axios.get('/api/cart/')
+    const res = await axios.get('/api/orders/')
     dispatch(setCart(res.data))
   } catch (err) {
     console.error(err)
