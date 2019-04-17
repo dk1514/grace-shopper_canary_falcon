@@ -1,14 +1,20 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
+import Cart from './Cart'
 
 class SingleHat extends Component {
   componentDidMount() {
     this.props.loadSingleHat()
   }
+  handleClick(event) {
+    event.preventDefault()
+    console.log('you added a hat!')
+  }
   render() {
     return (
       <div>
+        <Cart />
         <h1>This is a single hat</h1>
         <img src={this.props.singleHat.imageUrl} />
         <ul>
@@ -20,7 +26,7 @@ class SingleHat extends Component {
           <li>Price: ${this.props.singleHat.price}</li>
           <li>Quantity: {this.props.singleHat.quantity}</li>
         </ul>
-        <button type="submit">
+        <button type="submit" onClick={this.handleClick}>
           Add to Cart
         </button>
       </div>
