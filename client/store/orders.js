@@ -14,6 +14,7 @@ const CHECKOUT = 'CHECKOUT'
 const CREATE_UNAUTH_ORDER = 'CREATE_UNAUTH_ORDER'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
 const GET_TOTAL = 'GET_TOTAL'
+const ADD_TO_CART = 'ADD_TO_CART'
 
 /**
  * INITIAL STATE
@@ -25,9 +26,16 @@ const initialState = {
   total: 0
 }
 
+let storage = JSON.parse(localStorage.getItem('cart'))
+console.log('storage in orders reducer', storage)
 /**
  * ACTION CREATORS
  */
+export const addToCart = (storage) => ({
+  type: ADD_TO_CART,
+  cart: storage
+})
+
 export const gotOrders = allOrders => ({
   type: GET_ORDERS,
   allOrders
@@ -253,6 +261,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         total: action.total
+      }
+    }
+    case ADD_TO_CART: {
+      return {
+        ...state,
+        cart: {...state, cart: action.cart}
       }
     }
     default:

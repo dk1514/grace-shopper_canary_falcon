@@ -73,6 +73,8 @@ class Cart extends Component {
   }
 
   render() {
+    console.log('from cart', this.props.cart)
+    console.log('this.props', this.props)
     let cart = {}
     if (this.props.user.id) {
       if (this.props.cart.products) {

@@ -2,16 +2,48 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
 import Cart from './Cart'
+import {addToCart} from '../store/orders'
 
-export class SingleHat extends Component {
-  componentDidMount() {
-    this.props.loadSingleHat()
+class SingleHat extends Component {
+  constructor() {
+    super()
+    // this.state = {
+    //   cart: {
+    //     hats: [],
+    //     isCart: true
+    //   },
+    //   quantity: 0
+    // }
+    this.addItem = this.addItem.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  componentDidMount() {
+    let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+    this.props.loadSingleHat()
+
+  }
+
   handleClick(event) {
     event.preventDefault()
-    console.log('you added a hat!')
+    // this.addItem()
+    this.props.addOneHat()
   }
+  
+  addItem() {
+    // let localCart = localStorage.getItem('cart')
+    this.props.addOneHat()
+    // console.log('localCart', localCart)
+
+    // localStorage.setItem('cart', JSON.stringify(this.props.singleHat));
+    // console.log('cart in addItem', localStorage);
+    // console.log('parsed', JSON.parse(localStorage.getItem('cart')));
+  }
+  
   render() {
+    console.log('this.props.cart', this.props)
+    console.log('state', this.state);
+    console.log('this', this)
     return (
       <div>
         {/* <Cart /> */}
@@ -34,15 +66,21 @@ export class SingleHat extends Component {
 
 const mSTP = state => {
   return {
-    singleHat: state.singleHatReducer
+    singleHat: state.singleHatReducer,
+    cart: state.singleHatReducer
   }
 }
 
 const mDTP = (dispatch, ownProps) => {
   return {
+<<<<<<< HEAD
+    loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
+    addOneHat: () => dispatch(addToCart(ownProps.match.params.id))
+=======
     loadSingleHat: () => {
       dispatch(setSingleHatThunk(ownProps.match.params.id))
     }
+>>>>>>> master
   }
 }
 

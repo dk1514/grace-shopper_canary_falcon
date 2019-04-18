@@ -32,11 +32,12 @@ class AddToCart extends Component {
 
     render() {
         return (
-            <HatForm
-                product={this.state}
-                changeHandler={this.changeHandler}
-                submitHandler={this.submitHandler}
-            />
+            <div></div>
+            // <HatForm
+            //     product={this.state}
+            //     changeHandler={this.changeHandler}
+            //     submitHandler={this.submitHandler}
+            // />
         )
     }
 }
