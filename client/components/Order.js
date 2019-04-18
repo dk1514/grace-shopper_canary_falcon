@@ -22,7 +22,7 @@ const Order = props => {
                 ( '' )
             }
 
-            // maps list of hats
+            Order Info Here
 
         </div>
     )
