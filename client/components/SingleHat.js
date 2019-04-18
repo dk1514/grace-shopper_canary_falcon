@@ -73,8 +73,14 @@ const mSTP = state => {
 
 const mDTP = (dispatch, ownProps) => {
   return {
+<<<<<<< HEAD
     loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
     addOneHat: () => dispatch(addToCart(ownProps.match.params.id))
+=======
+    loadSingleHat: () => {
+      dispatch(setSingleHatThunk(ownProps.match.params.id))
+    }
+>>>>>>> master
   }
 }
 
