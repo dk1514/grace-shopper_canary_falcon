@@ -17,7 +17,7 @@ class AllHats extends Component {
               <Link to={`/hats/${hat.id}`}>
                 <img id="hatImage" src={hat.imageUrl} alt="hatimage" />
               </Link>
-              <h1>${hat.price}</h1>
+              <h1>${hat.price / 100}</h1>
             </li>
           ))}
         </ul>
