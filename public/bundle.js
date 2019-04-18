@@ -251,6 +251,208 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _CheckoutForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CheckoutForm */ "./client/components/CheckoutForm.js");
 /* harmony import */ var _CheckoutForm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_CheckoutForm__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Order */ "./client/components/Order.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var defaultState = {
+  cart: {
+    products: [],
+    isCart: true
+  }
+};
+
+var Cart =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Cart, _Component);
+
+  function Cart(props) {
+    var _this;
+
+    _classCallCheck(this, Cart);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cart).call(this, props));
+    _this.state = defaultState;
+    _this.handleCheckout = _this.handleCheckout.bind(_assertThisInitialized(_this));
+    _this.handleDeleteProduct = _this.handleDeleteProduct.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Cart, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.match.params.userId) {
+        this.props.getCart(this.props.match.params.userId);
+      } else {
+        var localStorageCart = JSON.parse(localStorage.getItem('cart'));
+        this.setState({
+          cart: localStorageCart
+        });
+      }
+    }
+  }, {
+    key: "handleDeleteProduct",
+    value: function handleDeleteProduct(userId, productId) {
+      if (this.props.user.id) {
+        this.props.deletedProductFromCart(userId, productId);
+      } else {
+        var products = this.state.cart.products;
+        var newProducts = products.filter(function (item) {
+          return item.id !== productId;
+        });
+        this.setState({
+          cart: {
+            products: newProducts,
+            isCart: true
+          }
+        });
+        localStorage.setItem('cart', JSON.stringify({
+          products: newProducts,
+          isCart: true
+        }));
+      }
+    }
+  }, {
+    key: "handleCheckout",
+    value: function handleCheckout() {
+      if (this.props.user.id) {
+        this.props.putCheckout(this.props.user.id);
+      } else {
+        var localStorageCart = JSON.parse(localStorage.getItem('cart'));
+        this.props.postUnauthOrder(localStorageCart);
+        localStorage.setItem('cart', JSON.stringify({
+          isCart: true,
+          products: []
+        }));
+        var emptyCart = JSON.parse(localStorage.getItem('cart'));
+        this.setState({
+          cart: emptyCart
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var cart = {};
+
+      if (this.props.user.id) {
+        if (this.props.cart.products) {
+          cart = this.props.cart;
+        } else {
+          cart = {
+            isCart: true,
+            products: []
+          };
+        }
+      } else if (this.state.cart.products) {
+        cart = this.state.cart;
+      } else {
+        cart = {
+          isCart: true,
+          products: []
+        };
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cart"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Order__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        user: this.props.user,
+        order: cart,
+        handleDeleteProduct: this.handleDeleteProduct
+      }), this.props.match.params.userId && cart.products.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button",
+        type: "submit"
+      }, "Enter") : ' ', cart.products.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CheckoutForm__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        handleCheckout: this.handleCheckout
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your Cart is Currently Empty"));
+    }
+  }]);
+
+  return Cart;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    cart: state.orders.cart,
+    user: state.user,
+    total: state.orders.total
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getCart: function getCart(userId) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["getCart"])(userId));
+    },
+    putCheckout: function putCheckout(user) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["putCheckout"])(user));
+    },
+    postUnauthOrder: function postUnauthOrder(cart) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["postUnauthOrder"])(cart));
+    },
+    deletedProductFromCart: function deletedProductFromCart(userId, productId) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["deleteProductFromCart"])(userId, productId));
+    },
+    gotCart: function gotCart(cart) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["gotCart"])(cart));
+    },
+    getTotal: function getTotal(total) {
+      return dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_6__["getTotal"])(total));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Cart));
+
+/***/ }),
+
+/***/ "./client/components/CheckoutForm.js":
+/*!*******************************************!*\
+  !*** ./client/components/CheckoutForm.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./client/components/EditCheckout.js":
+/*!*******************************************!*\
+  !*** ./client/components/EditCheckout.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -269,141 +471,99 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import axios from 'axios'
 
 
 
-
-
-
-var Cart =
+var EditCheckout =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Cart, _Component);
+  _inherits(EditCheckout, _Component);
 
-  function Cart(props) {
+  function EditCheckout(props) {
     var _this;
 
-    _classCallCheck(this, Cart);
+    _classCallCheck(this, EditCheckout);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cart).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditCheckout).call(this, props));
     _this.state = {
-      loaded: false
+      quantity: props.quantity,
+      cart: {
+        hats: [],
+        isCart: true
+      },
+      subtotal: 0
     };
     return _this;
   }
 
-  _createClass(Cart, [{
+  _createClass(EditCheckout, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // try {
-      //     const {data} = await axios.get('/api/cart/1')
-      //     this.setState({quantity: data.quantity})
-      // } catch(err) {console.error(err)}
-      this.props.getCartThunk();
+      var localStorageCart = JSON.parse(localStorage.getItem('cart'));
       this.setState({
-        loaded: true
+        cart: localStorageCart,
+        quantity: this.state.quantity
       });
     }
   }, {
-    key: "handleDeleteProduct",
-    value: function handleDeleteProduct(userId, hatId) {
-      if (this.props.user.id) {
-        this.props.deleteHatFromCart(userId, hatId);
-      } else {
-        var hats = this.state.cart.hats;
-        var newHats = hats.filter(function (item) {
-          return item.id !== hatId;
-        });
-        this.setState({
-          cart: {
-            hats: newHats,
-            isCart: true
-          }
-        }); // handle local storage
-      }
+    key: "handleChange",
+    value: function handleChange(event) {
+      this.setState({
+        quantity: event.target.value
+      });
     }
   }, {
-    key: "handleCheckout",
-    value: function handleCheckout() {
-      if (this.props.user.id) {
-        this.props.putCheckout(this.props.user.id);
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var _this2 = this;
+
+      event.preventDefault();
+
+      if (this.props.userId) {
+        var product = this.props.product;
+        var quantity = this.props.quantity;
+        this.props.putQuantity(product, quantity, this.props.userId);
       } else {
-        var emptyCart = '';
-        this.setState({
-          cart: emptyCart
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        var products = cart.products;
+        var newProducts = products.map(function (item) {
+          if (item.id !== _this2.product.id) {
+            return item;
+          } else {
+            item.quantity = _this2.state.quantity;
+            return item;
+          }
         });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      if (!this.state.loaded) {
-        console.log('nothing in cart yet!');
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null); // return (
-      //   <div>
-      //     <h1 className="title">Shopping Cart</h1>
-      //     <table className="table">
-      //       <thead>
-      //         <tr>
-      //           <th>Product</th>
-      //           <th>Image</th>
-      //           <th>Quantity</th>
-      //           <th>Price</th>
-      //         </tr>
-      //       </thead>
-      //       <tbody>
-      //         <tr>
-      //           <td>Product</td>
-      //           <td>Image</td>
-      //           <td>Quantity</td>
-      //           <td>Price</td>
-      //         </tr>
-      //       </tbody>
-      //     </table>
-      //     <div>Total: $</div>
-      //     <div>
-      //         <Link to='/success'>
-      //             <button className="button is-primary">Submit Order</button>
-      //         </Link>
-      //     </div>
-      //   </div>
-      // )
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Quantity:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        name: "quantity",
+        value: this.state.quantity,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button",
+        type: "submit"
+      }, "Update Quantity")));
     }
   }]);
 
-  return Cart;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    getCartThunk: function getCartThunk() {
-      return dispatch(Object(_store_orders__WEBPACK_IMPORTED_MODULE_2__["getCartThunk"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Cart));
-
-/***/ }),
-
-/***/ "./client/components/CheckoutForm.js":
-/*!*******************************************!*\
-  !*** ./client/components/CheckoutForm.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+  return EditCheckout;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // const mapDispatchToProps = dispatch => {
+//     return (
+//         putQuantity: 
+//         editQuantity:
+//         getTotal:
+//     )
+// }
 
 
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, null)(EditCheckout));
 
 /***/ }),
 
@@ -427,6 +587,43 @@ var FrontPage = function FrontPage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FrontPage);
+
+/***/ }),
+
+/***/ "./client/components/Order.js":
+/*!************************************!*\
+  !*** ./client/components/Order.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _EditCheckout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditCheckout */ "./client/components/EditCheckout.js");
+
+
+
+var Order = function Order(props) {
+  var _props$order = props.order,
+      id = _props$order.id,
+      userId = _props$order.userId,
+      isCart = _props$order.isCart,
+      isShipped = _props$order.isShipped,
+      createdAt = _props$order.createdAt,
+      hats = _props$order.hats;
+
+  var _ref = props.user || false,
+      isAdmin = _ref.isAdmin;
+
+  var subtotal = 0;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "subtitle"
+  }, "Order:"), isAdmin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "User: ", userId), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "isCart: ", isCart ? 'true' : 'false'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "isShipped: ", isCart ? 'true' : 'false'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Created: ", createdAt)) : '', "// maps list of hats");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Order);
 
 /***/ }),
 
@@ -1271,7 +1468,7 @@ __webpack_require__.r(__webpack_exports__);
 var reducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   user: _user__WEBPACK_IMPORTED_MODULE_4__["default"],
   hat: _hat__WEBPACK_IMPORTED_MODULE_6__["default"],
-  cart: _orders__WEBPACK_IMPORTED_MODULE_5__["default"],
+  orders: _orders__WEBPACK_IMPORTED_MODULE_5__["default"],
   singleHatReducer: _singleHatReducer__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
 var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])({

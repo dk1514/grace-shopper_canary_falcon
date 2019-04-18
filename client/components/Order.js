@@ -13,8 +13,8 @@ const Order = props => {
                 isAdmin? (
                     <ul>
                     <li>User: {userId}</li>
-                    <li>isCart: {isCart? 'true' : 'false'}</li>
-                    <li>isShipped: {isCart? 'true' : 'false'}</li>
+                    <li>isCart: {isCart ? 'true' : 'false'}</li>
+                    <li>isShipped: {isCart ? 'true' : 'false'}</li>
                     <li>Created: {createdAt}</li>
                     </ul>
                 )
