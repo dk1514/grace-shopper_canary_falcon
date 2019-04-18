@@ -4,22 +4,35 @@ import {setSingleHatThunk} from '../store/singleHatReducer'
 import Cart from './Cart'
 
 class SingleHat extends Component {
-  // constructor() {
-  //   this.state = {
-  //   }
-  // }
+  constructor() {
+    super()
+    this.addItem = this.addItem.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+
+  }
 
   componentDidMount() {
     this.props.loadSingleHat()
   }
-  
+
   handleClick(event) {
     event.preventDefault()
     console.log('you added a hat!')
+    console.log('this in handleClick', this)
+    this.addItem()
+    console.log('local storage after clicking', localStorage)
     // add item to cart using localStorage
+    
   }
-
+  
+  addItem() {
+    localStorage.setItem('cart', this.props.singleHat);
+  }
+  
   render() {
+    console.log('localStorage', localStorage)
+    console.log('this in render', this)
+    console.log('props', this.props.singleHat)
     return (
       <div>
         {/* <Cart /> */}
