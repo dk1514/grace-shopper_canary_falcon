@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Hat} = require('../db/models')
 module.exports = router
+const {User} = require('../db/models/user')
 
 router.get('/', async (req, res, next) => {
   try {
