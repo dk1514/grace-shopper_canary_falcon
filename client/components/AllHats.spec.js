@@ -56,13 +56,8 @@ describe('AllHats', () => {
         hats: [
           {
             id: 1,
-            name: 'blah',
-            price: 50
-          },
-          {
-            id: 2,
-            name: 'blah',
-            price: 100
+            name: 'baseball',
+            price: 500
           }
         ]
       }
@@ -74,6 +69,9 @@ describe('AllHats', () => {
     const {component} = setup(allHatsProps)
 
     // Test if props were passed into component and rendered properly
-    expect(component.text()).to.be.equal('<Link /><Link />')
+    expect(component.text()).to.be.equal(
+      `${allHatsProps.allHats.hats[0].name}<Link />$${allHatsProps.allHats
+        .hats[0].price / 100}`
+    )
   })
 })
