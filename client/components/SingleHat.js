@@ -19,11 +19,9 @@ class SingleHat extends Component {
         <img src={this.props.singleHat.imageUrl} />
         <ul>
           <li>Name: {this.props.singleHat.name}</li>
-          <li>Type: {this.props.singleHat.type}</li>
           <li>Description: {this.props.singleHat.description}</li>
           <li>Manufacturer: {this.props.singleHat.manufacturer}</li>
-          <li>SKU: {this.props.singleHat.sku}</li>
-          <li>Price: ${this.props.singleHat.price}</li>
+          <li>Price: ${this.props.singleHat.price / 100}</li>
           <li>Quantity: {this.props.singleHat.quantity}</li>
         </ul>
         <button type="submit" onClick={this.handleClick}>

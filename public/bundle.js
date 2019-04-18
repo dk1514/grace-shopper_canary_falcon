@@ -183,7 +183,7 @@ function (_Component) {
           id: "hatImage",
           src: hat.imageUrl,
           alt: "hatimage"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "$", hat.price));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "$", hat.price / 100));
       })));
     }
   }]);
@@ -492,7 +492,7 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.singleHat.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.singleHat.imageUrl
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Name: ", this.props.singleHat.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.singleHat.type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.singleHat.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Manufacturer: ", this.props.singleHat.manufacturer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "SKU: ", this.props.singleHat.sku), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Price: $", this.props.singleHat.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Quantity: ", this.props.singleHat.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Name: ", this.props.singleHat.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.singleHat.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Manufacturer: ", this.props.singleHat.manufacturer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Price: $", this.props.singleHat.price / 100), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Quantity: ", this.props.singleHat.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         onClick: this.handleClick
       }, "Add to Cart"));
@@ -46044,7 +46044,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
