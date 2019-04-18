@@ -1,4 +1,6 @@
-// might replace success page
+// tier 2
+// will replace success page
+// will include stripe checkout
 
 import React, {Component} from 'react'
 
