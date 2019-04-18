@@ -6,27 +6,27 @@ const db = require('../db')
 const app = require('../index')
 const Order = db.model('order')
 
-describe('Cart routes', () => {
+describe('Order routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/order/', () => {
-    // const quantity = 5
+  describe('/api/orders/', () => {
+    const isSubmitted = false
 
     beforeEach(() => {
       return Order.create({
-        quantity: 5
+        isSubmitted
       })
     })
 
-    it('GET /api/order', async () => {
+    it('GET /api/orders', async () => {
       const res = await request(app)
-        .get('/api/cart')
+        .get('/api/orders')
         .expect(200)
       console.log('res.body: ', res.body)
       expect(res.body).to.be.an('array')
-      expect(res.body[0].quantity).to.be.equal(5)
+      expect(res.body[0].isSubmitted).to.be.equal(false)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
