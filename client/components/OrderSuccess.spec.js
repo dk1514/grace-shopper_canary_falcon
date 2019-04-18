@@ -13,10 +13,12 @@ describe('OrderSuccess', () => {
   let orderSuccess
 
   beforeEach(() => {
+    // Create shallow copy of component
     orderSuccess = shallow(<OrderSuccess />)
   })
 
   it('renders the header in an div', () => {
+    // Test if component renders properly
     expect(orderSuccess.find('div').text()).to.be.equal(
       'Your order has been submitted.'
     )

@@ -10,11 +10,13 @@ import {AllHats} from './AllHats'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
+// Define Mock Function that will mock behavior of dispatch call
 const setup = props => {
   const actions = {
     loadHats: sinon.spy()
   }
 
+  // Create shallow copy of component
   const component = shallow(<AllHats {...props} {...actions} />)
 
   return {
@@ -27,6 +29,7 @@ let allHatsProps
 
 describe('AllHats', () => {
   beforeEach(() => {
+    // Create props for test
     allHatsProps = {
       allHats: {
         hats: []
@@ -35,14 +38,17 @@ describe('AllHats', () => {
   })
 
   it('renders blank page with no hats', () => {
+    // Invoke mock function
     const {component} = setup(allHatsProps)
 
+    // Test if props were passed into component and rendered properly
     expect(component.text()).to.be.equal('')
   })
 })
 
 describe('AllHats', () => {
   beforeEach(() => {
+    // Create props for test
     allHatsProps = {
       allHats: {
         hats: [
@@ -62,8 +68,10 @@ describe('AllHats', () => {
   })
 
   it('renders two links if two hats', () => {
+    // Invoke mock function
     const {component} = setup(allHatsProps)
 
+    // Test if props were passed into component and rendered properly
     expect(component.text()).to.be.equal('<Link /><Link />')
   })
 })

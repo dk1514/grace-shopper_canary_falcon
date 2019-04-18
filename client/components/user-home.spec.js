@@ -13,10 +13,12 @@ describe('UserHome', () => {
   let userHome
 
   beforeEach(() => {
+    // Create shallow copy of component
     userHome = shallow(<UserHome email="cody@email.com" />)
   })
 
   it('renders the email in an h3', () => {
+    // Test if component renders properly
     expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
   })
 })

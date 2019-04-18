@@ -13,10 +13,12 @@ describe('FrontPage', () => {
   let frontPage
 
   beforeEach(() => {
+    // Create shallow copy of component
     frontPage = shallow(<FrontPage />)
   })
 
   it('renders the header in an div', () => {
+    // Test if component renders properly
     expect(frontPage.find('div').text()).to.be.equal(
       'Welcome to the Canary Falcon Hat Store'
     )
