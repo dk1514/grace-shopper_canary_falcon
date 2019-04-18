@@ -2,7 +2,7 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
-const Hats = require('../server/db/models/hat')
+const {Hat} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -13,56 +13,44 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
-  const hat1 = await Hats.create({
-    name: 'red baseball hat',
-    color: 'red',
-    type: 'baseball hat',
-    sku: '0000001',
-    price: 19.99,
-    manufacturer: 'hatman',
-    description: 'this is a red baseball hat',
-    quantity: 500,
-    imageUrl: '/hatimages/redbaseballcap.jpg'
-  })
+  const hats = await Promise.all([
+    Hat.create({
+      name: 'red baseball hat',
+      price: 1999,
+      manufacturer: 'hatman',
+      description: 'this is a red baseball hat',
+      quantity: 500,
+      imageUrl: '/hatimages/redbaseballcap.jpg'
+    }),
+    Hat.create({
+      name: 'green baseball hat',
+      price: 1999,
+      manufacturer: 'hatman',
+      description: 'this is a green baseball hat',
+      quantity: 500,
+      imageUrl: '/hatimages/greenbaseballcap.jpg'
+    }),
+    Hat.create({
+      name: `frank's fedora`,
+      price: 49999,
+      manufacturer: 'hatmaster',
+      description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
+      quantity: 1,
+      imageUrl: '/hatimages/No_Image_Available.jpg'
+    }),
+    Hat.create({
+      name: 'texan cowboy hat',
+      price: 4999,
+      manufacturer: 'cowboy nation',
+      description: 'this is a cowboy bebop',
+      quantity: 500,
+      imageUrl: '/hatimages/cowboyhat.jpg'
+    })
+  ])
 
-  const hat2 = await Hats.create({
-    name: 'green baseball hat',
-    color: 'green',
-    type: 'baseball hat',
-    sku: '0000002',
-    price: 19.99,
-    manufacturer: 'hatman',
-    description: 'this is a green baseball hat',
-    quantity: 500,
-    imageUrl: '/hatimages/greenbaseballcap.jpg'
-  })
-
-  const hat3 = await Hats.create({
-    name: `frank's fedora`,
-    color: 'brown',
-    type: 'fedora',
-    sku: '0000003',
-    price: 499.99,
-    manufacturer: 'hatmaster',
-    description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
-    quantity: 1,
-    imageUrl: '/hatimages/fedora.jpg'
-  })
-
-  const hat4 = await Hats.create({
-    name: 'texan cowboy hat',
-    color: 'beige',
-    type: 'cowboy hat',
-    sku: '0000004',
-    price: 49.99,
-    manufacturer: 'cowboy nation',
-    description: 'this is a cowboy bebop',
-    quantity: 500,
-    imageUrl: '/hatimages/cowboyhat.jpg'
-  })
-
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(`seeded ${users.length} users123123`)
+  console.log(`seeded ${hats.length} hats`)
+  console.log(`seeded successfully minus hats`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.

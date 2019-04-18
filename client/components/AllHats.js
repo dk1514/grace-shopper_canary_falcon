@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import {setHatsThunk} from '../store/hat'
 import {connect} from 'react-redux'
-import SingleHat from './SingleHat'
 import {Link} from 'react-router-dom'
 
 export class AllHats extends Component {
@@ -15,11 +13,11 @@ export class AllHats extends Component {
         <ul id="hatList">
           {this.props.allHats.hats.map(hat => (
             <li key={hat.id}>
+              <h1>{hat.name}</h1>
               <Link to={`/hats/${hat.id}`}>
-                <h1>{hat.name}</h1>
                 <img id="hatImage" src={hat.imageUrl} alt="hatimage" />
-                <h1>${hat.price}</h1>
               </Link>
+              <h1>${hat.price / 100}</h1>
             </li>
           ))}
         </ul>

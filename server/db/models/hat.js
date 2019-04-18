@@ -18,19 +18,13 @@ description
 const Hat = db.define('hat', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
-  },
-  color: {
-    type: Sequelize.STRING
-  },
-  type: {
-    type: Sequelize.STRING
-  },
-  sku: {
-    type: Sequelize.STRING
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   manufacturer: {
@@ -40,14 +34,20 @@ const Hat = db.define('hat', {
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: '' //some image placeholder
+    defaultValue: '/hatimages/No_Image_Available.jpg',
+    validate: {
+      notEmpty: true
+    }
   },
   description: {
     type: Sequelize.TEXT
   },
   quantity: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   }
 })
 

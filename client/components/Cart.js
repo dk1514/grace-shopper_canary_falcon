@@ -1,75 +1,132 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
-import {getCartThunk} from '../store/cart'
+import {getCartThunk} from '../store/orders'
 import {Link} from 'react-router-dom'
+import CheckoutForm from './CheckoutForm'
+import Order from './Order'
+import {
+  getCart,
+  putCheckout,
+  postUnauthOrder,
+  deleteProductFromCart,
+  gotCart,
+  getTotal
+} from '../store'
+
+let defaultState = {
+  cart: {
+    products: [],
+    isCart: true
+  }
+}
 
 class Cart extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loaded: false
+    this.state = defaultState
+    this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleDeleteProduct = this.handleDeleteProduct.bind(this)
+  }
+
+  componentDidMount() {
+    if (this.props.match.params.userId) {
+      this.props.getCart(this.props.match.params.userId)
+    } else {
+      let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+      this.setState({
+        cart: localStorageCart
+      })
     }
   }
 
-  // componentDidMount() {
-  async componentDidMount() {
-    // try {
-    //     const {data} = await axios.get('/api/cart/1')
-    //     this.setState({quantity: data.quantity})
-    // } catch(err) {console.error(err)}
-    await this.props.getCartThunk()
-    this.setState({loaded: true})
+  handleDeleteProduct(userId, productId) {
+    if (this.props.user.id) {
+      this.props.deletedProductFromCart(userId, productId)
+    } else {
+      const products = this.state.cart.products
+      const newProducts = products.filter(item => item.id !== productId)
+      this.setState({
+        cart: {
+          products: newProducts,
+          isCart: true
+        }
+      })
+      localStorage.setItem(
+        'cart',
+        JSON.stringify({products: newProducts, isCart: true})
+      )
+    }
+  }
+
+  handleCheckout() {
+    if (this.props.user.id) {
+      this.props.putCheckout(this.props.user.id)
+    } else {
+      let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+      this.props.postUnauthOrder(localStorageCart)
+      localStorage.setItem('cart', JSON.stringify({isCart: true, products: []}))
+      let emptyCart = JSON.parse(localStorage.getItem('cart'))
+      this.setState({
+        cart: emptyCart
+      })
+    }
   }
 
   render() {
-    if (!this.state.loaded) {
-      console.log('nothing in cart yet!')
-      return <div />
+    let cart = {}
+    if (this.props.user.id) {
+      if (this.props.cart.products) {
+        cart = this.props.cart
+      } else {
+        cart = {isCart: true, products: []}
+      }
+    } else if (this.state.cart.products) {
+      cart = this.state.cart
+    } else {
+      cart = {isCart: true, products: []}
     }
-    console.log('props', this.props)
-    console.log('cart', this.props.cart)
-    // console.log('cart in cart', this.props.cart.cart[0])
-    // console.log('quantity in cart in cart', this.props.cart.cart[0].quantity)
-
     return (
-      <div>
-        <h1 className="title">Shopping Cart</h1>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Image</th>
-              <th>Quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Product</td>
-              <td>Image</td>
-              <td>Quantity</td>
-              <td>Price</td>
-            </tr>
-          </tbody>
-        </table>
-        <div>Total: $</div>
-        <div>
-            <Link to='/success'>
-                <button className="button is-primary">Submit Order</button>
-            </Link>
-        </div>
+      <div className="cart">
+        <Order
+          user={this.props.user}
+          order={cart}
+          handleDeleteProduct={this.handleDeleteProduct}
+        />
+        {this.props.match.params.userId && cart.products.length ? (
+            <button className="button" type="submit">
+              Enter
+            </button>
+        ) : (
+          ' '
+        )}
+        {cart.products.length ? (
+            <CheckoutForm handleCheckout={this.handleCheckout} />
+        ) : (
+          <h2>Your Cart is Currently Empty</h2>
+        )}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  cart: state.cart
-})
+const mapStateToProps = state => {
+  return {
+    cart: state.orders.cart,
+    user: state.user,
+    total: state.orders.total
+  }
+}
 
-const mapDispatchToProps = dispatch => ({
-  getCartThunk: () => dispatch(getCartThunk())
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    getCart: userId => dispatch(getCart(userId)),
+    putCheckout: user => dispatch(putCheckout(user)),
+    postUnauthOrder: cart => dispatch(postUnauthOrder(cart)),
+    deletedProductFromCart: (userId, productId) =>
+      dispatch(deleteProductFromCart(userId, productId)),
+    gotCart: cart => dispatch(gotCart(cart)),
+    getTotal: total => dispatch(getTotal(total))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
