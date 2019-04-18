@@ -3,6 +3,7 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Hat} = require('../server/db/models')
+const {Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -45,6 +46,13 @@ async function seed() {
       description: 'this is a cowboy bebop',
       quantity: 500,
       imageUrl: '/hatimages/cowboyhat.jpg'
+    })
+  ])
+
+  const order = await Promise.all([
+    Order.create({
+      isCart: false,
+      isSubmitted: true
     })
   ])
 

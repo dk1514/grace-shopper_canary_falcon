@@ -17,3 +17,30 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/cart', async (req, res, next) => {
+  try {
+    // if (req.user.isAdmin) {
+    const orderHat = await OrderHat.findAll()
+    console.log('orderHat/get', req.body);
+    res.status(200).json(orderHat)
+    // } else {
+    // res.sendStatus(403)
+  } catch (err) {
+    // }
+    next(err)
+  }
+})
+
+router.post('/cart', async (req, res, next) => {
+  try {
+    // if (req.user.isAdmin) {
+    const orderHat = await OrderHat.create(req.body)
+    res.status(200).json(orderHat)
+    // } else {
+    // res.sendStatus(403)
+  } catch (err) {
+    // }
+    next(err)
+  }
+})
