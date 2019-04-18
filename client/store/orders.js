@@ -213,7 +213,7 @@ export const updateCartThunk = id => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultOrderState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS: {
       return {...state, allOrders: action.allOrders}

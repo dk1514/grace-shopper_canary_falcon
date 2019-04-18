@@ -33,9 +33,20 @@ class EditCheckout extends Component {
         if(this.props.userId) {
             const product = this.props.product
             const quantity = this.props.quantity
-            this.props.putQuantity
+            this.props.putQuantity(product, quantity, this.props.userId)
+        } else {
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            const products = cart.products
+            const newProducts = products.map(item => {
+                if(item.id !== this.product.id) {
+                    return item
+                } else {
+                    item.quantity = this.state.quantity
+                    return item
+                }
+                })
+            }
         }
-    }
 
     render() {
         return (
