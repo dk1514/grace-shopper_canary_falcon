@@ -10,8 +10,9 @@ import {SingleHat} from './SingleHat'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-// Define Mock Function that will mock behavior of dispatch call
+// Define set up function for running test
 const setup = singleHat => {
+  // Define Mock Function that will mock behavior of dispatch call
   const actions = {
     loadSingleHat: sinon.spy()
   }
@@ -20,6 +21,7 @@ const setup = singleHat => {
   const component = shallow(<SingleHat singleHat={singleHat} {...actions} />)
 
   return {
+    // Return shallow copy of component and mock function for dispatch call
     component: component,
     actions: actions,
     singleHat: component.find(singleHat)
@@ -30,14 +32,14 @@ let singleHatProps
 
 describe('SingleHat', () => {
   beforeEach(() => {
-    // Create props for test
+    // Create props to pass into test
     singleHatProps = {
       name: 'Product 1'
     }
   })
 
   it('renders name of a single hat', () => {
-    // Invoke mock function
+    // Invoke set up function (shallow copy of component and mock function for dispatch behavior)
     const {component} = setup(singleHatProps)
 
     // Test if props were passed into component and rendered properly
