@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
 import Cart from './Cart'
 
-class SingleHat extends Component {
+export class SingleHat extends Component {
   componentDidMount() {
     this.props.loadSingleHat()
   }
@@ -42,7 +42,9 @@ const mSTP = state => {
 
 const mDTP = (dispatch, ownProps) => {
   return {
-    loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id))
+    loadSingleHat: () => {
+      dispatch(setSingleHatThunk(ownProps.match.params.id))
+    }
   }
 }
 

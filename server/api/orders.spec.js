@@ -6,7 +6,7 @@ const db = require('../db')
 const app = require('../index')
 const Order = db.model('order')
 
-describe('Cart routes', () => {
+describe('Order routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -22,7 +22,7 @@ describe('Cart routes', () => {
 
     it('GET /api/order', async () => {
       const res = await request(app)
-        .get('/api/cart')
+        .get('/api/order')
         .expect(200)
       console.log('res.body: ', res.body)
       expect(res.body).to.be.an('array')

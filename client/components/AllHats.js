@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import SingleHat from './SingleHat'
 import {Link} from 'react-router-dom'
 
-class AllHats extends Component {
+export class AllHats extends Component {
   componentDidMount() {
     this.props.loadHats()
   }
@@ -37,7 +37,9 @@ const mapSTP = state => {
 
 const mapDTP = dispatch => {
   return {
-    loadHats: () => dispatch(setHatsThunk())
+    loadHats: () => {
+      dispatch(setHatsThunk())
+    }
   }
 }
 
