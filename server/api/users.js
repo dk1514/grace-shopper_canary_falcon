@@ -21,7 +21,7 @@ router.get('/:userId', async (req, res, next) => {
   try {
     const userId = req.user.id || null
     if (userId === req.params.userId || req.user.isAdmin) {
-      const particularUser = await User.findById(+req.params.userId, {
+      const particularUser = await User.findByPk(+req.params.userId, {
         include: [{model: Order}]
       })
       if (!particularUser) {
@@ -195,7 +195,7 @@ router.put('/:userId/checkout', async (req, res, next) => {
       )
       const joinTableArray = await Promise.all(updateJoinTablePromises)
 
-      // ***** find updated order and set to past
+      // find updated order and set to past
       const checkout = await cart.update({
         isCart: false,
         isShipped: false
