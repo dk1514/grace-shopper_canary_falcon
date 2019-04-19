@@ -177,7 +177,6 @@ router.put('/:userId/checkout', async (req, res, next) => {
   try {
     const userId = req.user.id || null
     if (userId === +req.params.userId) {
-      const discount = req.body.discount || 1
       let cart = await Order.findOne({
         where: {isCart: true, userId: +req.params.userId},
         include: [{model: Hat}]
@@ -190,7 +189,7 @@ router.put('/:userId/checkout', async (req, res, next) => {
       const dbProductsArray = await Promise.all(productPromises)
       // turn fetched products into promises of added products
       const updateJoinTablePromises = dbProductsArray.map(product =>
-        OrderProduct.findOne({
+        OrderHat.findOne({
           where: {orderId: cart.id, productId: product.id}
         })
       )
