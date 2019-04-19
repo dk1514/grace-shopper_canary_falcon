@@ -32,6 +32,7 @@ router.get('/:userId', async (req, res, next) => {
         where: {userId: +req.params.userId, isCart: true},
         include: [{model: Hat}]
       })
+      req.session.cart = cart
       res.status(200).json({particularUser, cart})
     } else {
       res.sendStatus(403)

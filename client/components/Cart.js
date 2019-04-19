@@ -29,14 +29,15 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.userId) {
+    // if (this.props.match.params.userId) {
+    //   this.props.getCart(this.props.match.params.userId)
+    // } else {
+    //   let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+    //   this.setState({
+    //     cart: localStorageCart
+    //   })
+    // }
       this.props.getCart(this.props.match.params.userId)
-    } else {
-      let localStorageCart = JSON.parse(localStorage.getItem('cart'))
-      this.setState({
-        cart: localStorageCart
-      })
-    }
   }
 
   handleDeleteProduct(userId, productId) {
@@ -73,7 +74,7 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('from cart', this.props.cart)
+    // console.log('from cart', this.props.cart)
     console.log('this.props', this.props)
     let cart = {}
     if (this.props.user.id) {
