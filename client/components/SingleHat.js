@@ -21,7 +21,6 @@ class SingleHat extends Component {
   componentDidMount() {
     let localStorageCart = JSON.parse(localStorage.getItem('cart'))
     this.props.loadSingleHat()
-
   }
 
   handleClick(event) {
@@ -29,7 +28,7 @@ class SingleHat extends Component {
     // this.addItem()
     this.props.addOneHat()
   }
-  
+
   addItem() {
     // let localCart = localStorage.getItem('cart')
     this.props.addOneHat()
@@ -39,10 +38,10 @@ class SingleHat extends Component {
     // console.log('cart in addItem', localStorage);
     // console.log('parsed', JSON.parse(localStorage.getItem('cart')));
   }
-  
+
   render() {
     console.log('this.props.cart', this.props)
-    console.log('state', this.state);
+    console.log('state', this.state)
     console.log('this', this)
     return (
       <div>
@@ -73,14 +72,8 @@ const mSTP = state => {
 
 const mDTP = (dispatch, ownProps) => {
   return {
-<<<<<<< HEAD
     loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
     addOneHat: () => dispatch(addToCart(ownProps.match.params.id))
-=======
-    loadSingleHat: () => {
-      dispatch(setSingleHatThunk(ownProps.match.params.id))
-    }
->>>>>>> master
   }
 }
 
