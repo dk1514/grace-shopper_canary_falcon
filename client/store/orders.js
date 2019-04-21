@@ -4,80 +4,35 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_ORDERS = 'GET_ORDERS'
-const CREATE_ORDER = 'CREATE_ORDER'
-const GET_CART = 'GET_CART'
-const GET_PAST_ORDERS = 'GET_PAST_ORDERS'
-const EDIT_CART = 'EDIT_CART'
-const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART'
-const CHECKOUT = 'CHECKOUT'
-const CREATE_UNAUTH_ORDER = 'CREATE_UNAUTH_ORDER'
-const EDIT_QUANTITY = 'EDIT_QUANTITY'
-const GET_TOTAL = 'GET_TOTAL'
 const ADD_TO_CART = 'ADD_TO_CART'
+const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
+const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
+const GET_TOTAL = 'GET_TOTAL'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
-  allOrders: [],
-  cart: {},
-  pastOrders: [],
+  cart: [],
   total: 0
 }
 
-let storage = JSON.parse(localStorage.getItem('cart'))
-console.log('storage in orders reducer', storage)
 /**
  * ACTION CREATORS
  */
-export const addToCart = (storage) => ({
+export const addToCart = (id) => ({
   type: ADD_TO_CART,
-  cart: storage
+  id
 })
 
-export const gotOrders = allOrders => ({
-  type: GET_ORDERS,
-  allOrders
+export const increaseQuantity = id => ({
+  type: INCREASE_QUANITY,
+  id
 })
 
-export const createdOrder = order => ({
-  type: CREATE_ORDER,
-  order
-})
-
-export const gotCart = cart => ({
-  type: GET_CART,
-  cart
-})
-
-export const gotPastOrders = pastOrders => ({
-  type: GET_PAST_ORDERS,
-  pastOrders
-})
-
-export const editCart = cart => ({
-  type: EDIT_CART,
-  cart
-})
-
-export const editQuantity = updatedQuantity => ({
-  type: EDIT_QUANTITY,
-  updatedQuantity
-})
-
-export const removedProductFromCart = remainedProducts => ({
-  type: DELETE_PRODUCT_FROM_CART,
-  remainedProducts
-})
-
-export const checkedOut = cart => ({
-  type: CHECKOUT,
-  cart
-})
-export const createdUnauthOrder = cart => ({
-  type: CREATE_UNAUTH_ORDER,
-  cart
+export const decreaseQuantity = id => ({
+  type: DECREASE_QUANITY,
+  id
 })
 
 export const getTotal = total => ({
