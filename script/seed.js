@@ -38,7 +38,7 @@ async function seed() {
       manufacturer: 'hatmaster',
       description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
       quantity: 1,
-      imageUrl: '/hatimages/No_Image_Available.jpg'
+      imageUrl: '/hatimages/fedora.jpg'
     }),
     Hat.create({
       name: 'texan cowboy hat',
