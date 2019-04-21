@@ -13,7 +13,7 @@ class SingleHat extends Component {
   handleClick(id) {
     this.props.addToCart(id)
     console.log('ADD ONE HAT')
-    console.log('ADDED ITEMS', this.props.items);
+    console.log('CART CONTENTS', this.props.cart);
   }
 
   render() {
@@ -47,7 +47,7 @@ class SingleHat extends Component {
 const mSTP = state => {
   return {
     singleHat: state.singleHatReducer,
-    items: state.addedItems
+    cart: state.cart
   }
 }
 

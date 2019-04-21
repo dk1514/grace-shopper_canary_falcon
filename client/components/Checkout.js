@@ -35,7 +35,7 @@ class Checkout extends Component{
                     </div>
                     <div className="checkout">
                         <Link to='/success'>
-                            <button className="button is-primary" type='button'>Checkout</button>
+                            <button className="button is-primary" type='button'>Submit Order</button>
                         </Link>
                     </div>
                  </div>

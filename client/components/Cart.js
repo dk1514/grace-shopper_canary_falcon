@@ -81,4 +81,4 @@ const mapDispatchToProps = (dispatch)=>{
         // subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
     }
 }
-export default connect(null,null)(Cart)
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)

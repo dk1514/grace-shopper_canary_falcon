@@ -41,13 +41,14 @@ export const decreaseQuantityThunk = () => {
 }
 
 const initialState = {
-  cart: []
+  cart: [],
+  total: 0
 }
 
 const cartReducer = (state=initialState, action) => {
   switch(action.type) {
       case ADD_TO_CART: {
-          return {...state, aircraft: [...state.aircraft, action.aircraft]}
+          return {...state, aircraft: [...state.cart, action.aircraft]}
       }
       case REMOVE_FROM_CART: {
           return {...state, aircraft: [...state.filter((aircraft)=>{return (aircraft.id!==action.aircraftId)})]}
@@ -58,6 +59,8 @@ const cartReducer = (state=initialState, action) => {
       case DECREASE_QUANTITY: {
           return {aircraft: action.aircraft}
       }
+      case GET_TOTAL:
+        return null
       default: {
           return state
       }
