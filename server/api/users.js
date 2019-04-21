@@ -102,7 +102,7 @@ router.put('/:userId/cart', async (req, res, next) => {
       })
       let returnCart = await Order.findOne({
         where: {isCart: true, userId},
-        include: [{model: Product}]
+        include: [{model: Hat}]
       })
       res.status(201).json(returnCart)
     } else {
