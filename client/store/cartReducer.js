@@ -13,12 +13,12 @@ export const addToCart = (id) => ({
 })
 
 export const increaseQuantity = id => ({
-  type: INCREASE_QUANITY,
+  type: INCREASE_QUANTITY,
   id
 })
 
 export const decreaseQuantity = id => ({
-  type: DECREASE_QUANITY,
+  type: DECREASE_QUANTITY,
   id
 })
 
