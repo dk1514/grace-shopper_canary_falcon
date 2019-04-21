@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 //import { addShipping } from './actions/cartActions'
+import {Link} from 'react-router-dom'
+
+
 class Checkout extends Component{
 
     componentWillUnmount() {
@@ -31,7 +34,9 @@ class Checkout extends Component{
                         <li className="collection-item"><b>Total: ${this.props.total}</b></li>
                     </div>
                     <div className="checkout">
-                        <button className="button is-primary">Checkout</button>
+                        <Link to='/success'>
+                            <button className="button is-primary" type='button'>Checkout</button>
+                        </Link>
                     </div>
                  </div>
         )

@@ -43,8 +43,8 @@ const initialState = {
   cart: []
 }
 
-const cartReducer = (state=initialState, action) {
+// const cartReducer = (state=initialState, action) {
 
-}
+// }
 
-export default cartReducer
+// export default cartReducer
