@@ -4,23 +4,36 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 export class AllHats extends Component {
+
   componentDidMount() {
     this.props.loadHats()
   }
+
   render() {
     return (
-      <div id="AllHatsComponent">
-        <ul id="hatList">
+      <div className="columns is-multiline is-centered">
+        <div className="column is-5">
+          {this.props.allHats.hats.map(hat => (
+            <div className='card' key={hat.id}>
+              <h1 className='title'>{hat.name}</h1>
+              <Link to={`/hats/${hat.id}`}>
+                <img src={hat.imageUrl} alt="hatimage" />
+              </Link>
+              <h1 className='subtitle'>${hat.price / 100}</h1>
+            </div>
+          ))}
+        </div>
+        {/* <ul className="column is-5">
           {this.props.allHats.hats.map(hat => (
             <li key={hat.id}>
-              <h1>{hat.name}</h1>
+              <h1 className='title'>{hat.name}</h1>
               <Link to={`/hats/${hat.id}`}>
                 <img id="hatImage" src={hat.imageUrl} alt="hatimage" />
               </Link>
               <h1>${hat.price / 100}</h1>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     )
   }
