@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCartThunk} from '../store/orders'
 import {Link} from 'react-router-dom'
-import CheckoutForm from './CheckoutForm'
 import Order from './Order'
 import {
   getCart,
