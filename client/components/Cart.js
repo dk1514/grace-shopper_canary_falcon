@@ -21,7 +21,7 @@ let hardCodedData = [
         description: 'this is a green baseball hat',
     }
 ]
-let total = 100
+let total = 39.98
 
 class Cart extends Component{
 
@@ -83,6 +83,7 @@ class Cart extends Component{
              (
                 <p>Shopping cart is empty.</p>
              )
+
        return(
             <div>
                 <div>
@@ -98,11 +99,12 @@ class Cart extends Component{
                         </thread>
                         <tbody>
                             {addedItems}
+                            
                         </tbody>
                     </table>
                 </div>
                 <div>
-                    <b>Total: ${this.props.total}</b>
+                    <b>Total: ${total}</b>
                 </div>
                 <div className="checkout">
                     <Link to='/success'>
