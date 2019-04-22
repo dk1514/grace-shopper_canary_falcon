@@ -9,8 +9,9 @@ class OrderHistory extends Component {
     render() {
         let orderHistory = hardCodedData.length ?
         (<div>
-            <h1>Your Order History</h1>
+            <h1 className='title'>Your Order History</h1>
             <div className='columns is-centered'>
+                <div className='column'>ORDER HERE</div>
             </div>
         </div>)
         :
