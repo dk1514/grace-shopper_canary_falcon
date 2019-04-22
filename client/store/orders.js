@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 /**
  * ACTION TYPES
@@ -29,7 +28,7 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-export const addToCart = (id) => ({
+export const addToCart = id => ({
   type: ADD_TO_CART,
   id
 })

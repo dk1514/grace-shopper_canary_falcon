@@ -1,3 +1,4 @@
+<<<<<<< chrisBranch
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -115,17 +116,13 @@ class Cart extends Component{
     }
 }
 
-const mapStateToProps = (state)=>{
-    return{
-        cart: state.cart,
-        total: state.total
-    }
+const mapStateToProps = state => {
+  console.log('from state', state)
+  return {
+    state
+  }
 }
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        removeFromCart: (id)=>{dispatch(removeFromCart(id))},
-        increaseQuantity: (id)=>{dispatch(increaseQuantity(id))},
-        decreaseQuantity: (id)=>{dispatch(decreaseQuantity(id))}
-    }
+const mapDispatchToProps = dispatch => {
+  return {}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

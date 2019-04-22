@@ -4,14 +4,16 @@ import {setSingleHatThunk} from '../store/singleHatReducer'
 import Cart from './Cart'
 import {addToCart} from '../store/orders'
 
+
 class SingleHat extends Component {
   constructor(props) {
     super(props)
     this.handleClick=this.handleClick.bind(this)
   }
-
   componentDidMount() {
+    console.log('before cdp', this.props)
     this.props.loadSingleHat()
+    console.log('after cdp', this.props)
   }
 
   handleClick() {
@@ -21,7 +23,6 @@ class SingleHat extends Component {
   }
 
   render() {
-
     return (
       <div className='card'>
           <h1 className='title has-text-centered'>{this.props.singleHat.name}</h1>
@@ -29,6 +30,7 @@ class SingleHat extends Component {
           <img className='card-image is-128x128' src={this.props.singleHat.imageUrl} />
         </div>
         <div className='card-content has-text-centered'>
+
           <ul>
             <li>Name: {this.props.singleHat.name}</li>
             <li>Description: {this.props.singleHat.description}</li>
@@ -37,8 +39,10 @@ class SingleHat extends Component {
             <li>Quantity: {this.props.singleHat.quantity}</li>
           </ul>
         </div>
+s
         <div className='card-footer has-text-centered'>
           <button className='button is-primary' type="submit" onClick={this.handleClick}>
+
             Add to Cart
           </button>
         </div>
@@ -48,9 +52,9 @@ class SingleHat extends Component {
 }
 
 const mSTP = state => {
+  console.log('state', state)
   return {
-    singleHat: state.singleHatReducer,
-    cart: state.cart
+    singleHat: state.singleHatReducer
   }
 }
 
