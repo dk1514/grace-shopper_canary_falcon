@@ -6,4 +6,4 @@ export const FrontPage = () => {
   )
 }
 
-// export default FrontPage
+export default FrontPage

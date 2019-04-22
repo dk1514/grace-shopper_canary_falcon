@@ -26,8 +26,6 @@ const initialState = {
   total: 0
 }
 
-let storage = JSON.parse(localStorage.getItem('cart'))
-console.log('storage in orders reducer', storage)
 /**
  * ACTION CREATORS
  */
