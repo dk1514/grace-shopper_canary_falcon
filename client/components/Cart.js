@@ -48,7 +48,6 @@ class Cart extends Component{
         //             )
         //         })
         //     ):
-
             //  (
             //     <p>Shopping cart is empty.</p>
             //  )
