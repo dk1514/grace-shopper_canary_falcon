@@ -67,9 +67,9 @@ class Cart extends Component{
                             </td>
                             
                             <td>
-                                <div className="add-remove">
-                                    <Link to="/cart"><i className="fas caret-up" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
-                                    <Link to="/cart"><i className="fas caret-down" onClick={()=>{this.handleSubtractQuantity(item.id)}}>arrow_drop_down</i></Link>
+                                <div>
+                                    <button className='button is-success' onClick={()=>{this.handleAddQuantity(item.id)}}>Increase</button>
+                                    <button className='button is-warning' onClick={()=>{this.handleSubtractQuantity(item.id)}}>Decrease</button>
                                 </div>
                             </td>
 
