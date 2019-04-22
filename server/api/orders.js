@@ -5,15 +5,42 @@ module.exports = router
 //Get all orders
 router.get('/', async (req, res, next) => {
   try {
-    // if (req.user.isAdmin) {
-    const allOrders = await Order.findAll({
-      include: [{model: Hat}]
-    })
-    res.status(200).json(allOrders)
-    // } else {
-    // res.sendStatus(403)
+    if (req.user.isAdmin) {
+      const allOrders = await Order.findAll({
+        include: [{model: Hat}]
+      })
+      res.status(200).json(allOrders)
+    } else {
+      res.sendStatus(403)
+    }
   } catch (err) {
-    // }
+    next(err)
+  }
+})
+
+router.get('/cart', async (req, res, next) => {
+  try {
+    if (req.user.isAdmin) {
+      const orderHat = await OrderHat.findAll()
+      res.status(200).json(orderHat)
+    } else {
+      res.sendStatus(403)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/cart', async (req, res, next) => {
+  try {
+    if (req.user.isAdmin) {
+      const orderHat = await OrderHat.create(req.body)
+      req.session.cart = orderHat
+      res.status(200).json(orderHat)
+    } else {
+      res.sendStatus(403)
+    }
+  } catch (err) {
     next(err)
   }
 })

@@ -6,7 +6,7 @@ const Order = db.define('order', {
         type: Sequelize.BOOLEAN,
         defaultValue: true
     },
-    isSubmitted: {
+    isShipped: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     }

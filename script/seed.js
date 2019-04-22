@@ -3,6 +3,7 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Hat} = require('../server/db/models')
+const {Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -10,7 +11,8 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'murphy@email.com', password: '123'}),
+    User.create({email: 'admin@email.com', password: '123', isAdmin: true})
   ])
 
   const hats = await Promise.all([
@@ -36,7 +38,7 @@ async function seed() {
       manufacturer: 'hatmaster',
       description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
       quantity: 1,
-      imageUrl: '/hatimages/No_Image_Available.jpg'
+      imageUrl: '/hatimages/fedora.jpg'
     }),
     Hat.create({
       name: 'texan cowboy hat',
@@ -45,6 +47,13 @@ async function seed() {
       description: 'this is a cowboy bebop',
       quantity: 500,
       imageUrl: '/hatimages/cowboyhat.jpg'
+    })
+  ])
+
+  const order = await Promise.all([
+    Order.create({
+      isCart: false,
+      isSubmitted: true
     })
   ])
 
