@@ -89,14 +89,13 @@ class Cart extends Component{
                 <div>
                     <h1 className='title'>Your Order:</h1>
                     <table className="table is-striped">
-                        <thread>
+                        <thead>
                             <th>Name</th>
                             <th>Image</th>
                             <th>Description</th>
                             <th>Price</th>                           
                             <th>Quantity</th>                           
-                            <th>Increase/Decrease</th>                           
-                        </thread>
+                        </thead>
                         <tbody>
                             {addedItems}
                             
