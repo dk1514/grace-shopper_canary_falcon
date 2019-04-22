@@ -48,13 +48,13 @@ const initialState = {
 const cartReducer = (state=initialState, action) => {
   switch(action.type) {
       case ADD_TO_CART: {
-          return {...state, aircraft: [...state.cart, action.aircraft]}
+          return {...state, cart: [...state.cart, action.aircraft]}
       }
       case REMOVE_FROM_CART: {
-          return {...state, aircraft: [...state.filter((aircraft)=>{return (aircraft.id!==action.aircraftId)})]}
+          return {...state, cart: [...state.filter((aircraft)=>{return (aircraft.id!==action.aircraftId)})]}
       }
       case INCREASE_QUANTITY: {
-          return {...state, aircraft: [...state.map((aircraft)=>{return (aircraft.id===action.aircraftId ? action.aircraft : aircraft)})]}
+          return {...state, cart: [...state.map((aircraft)=>{return (aircraft.id===action.aircraftId ? action.aircraft : aircraft)})]}
       }
       case DECREASE_QUANTITY: {
           return {aircraft: action.aircraft}
