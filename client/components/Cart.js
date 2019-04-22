@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { increaseQuantity, decreaseQuantity,removeItem} from '../store/orders'
-import Checkout from './Checkout'
+import { removeFromCart, increaseQuantity, decreaseQuantity} from '../store/cartReducer'
+
 class Cart extends Component{
 
     // remove item from cart
     handleRemove = (id)=>{
-        this.props.removeItem(id);
+        this.props.removeFromCart(id);
     }
     // increase quantity
     handleAddQuantity = (id)=>{
-        this.props.addQuantity(id);
+        this.props.increaseQuantity(id);
     }
     // decrease quantity
     handleSubtractQuantity = (id)=>{
-        this.props.subtractQuantity(id);
+        this.props.decreaseQuantity(id);
     }
     render(){
 
@@ -58,27 +58,34 @@ class Cart extends Component{
                     <h5>You have ordered:</h5>
                     <ul className="collection">
                         {/* {addedItems} */}
-                        ITEMS GO HERE
+                        ADDED ITEMS GO HERE
                     </ul>
                 </div>
-                <Checkout />
+                <div>
+                    <b>Total: ${this.props.total}</b>
+                </div>
+                {/* <Checkout /> */}
+                <div className="checkout">
+                    <Link to='/success'>
+                        <button className="button is-primary" type='button'>Submit Order</button>
+                    </Link>
+                </div>
             </div>
        )
     }
 }
 
-
 const mapStateToProps = (state)=>{
     return{
-        // items: state.addedItems,
-        addedItems: state.addedItems
+        cart: state.cart,
+        total: state.total
     }
 }
 const mapDispatchToProps = (dispatch)=>{
     return{
-        // removeItem: (id)=>{dispatch(removeItem(id))},
-        // addQuantity: (id)=>{dispatch(addQuantity(id))},
-        // subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+        removeFromCart: (id)=>{dispatch(removeFromCart(id))},
+        increaseQuantity: (id)=>{dispatch(increaseQuantity(id))},
+        decreaseQuantity: (id)=>{dispatch(decreaseQuantity(id))}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Cart)
