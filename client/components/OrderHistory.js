@@ -6,8 +6,12 @@ import {connect} from 'react-redux'
 import {getOrders} from '../store'
 import Order from './Order'
 
-class AllOrders extends Component {
-    // return list of past orders
+class OrderHistory extends Component {
+    render() {
+        return (
+            <div>ORDER HISTORY GOES HERE</div>
+        )
+    }
 }
 
-export default connect(null, null)(AllOrders)
+export default connect(null, null)(OrderHistory)

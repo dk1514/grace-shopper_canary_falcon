@@ -48,16 +48,16 @@ const initialState = {
 const cartReducer = (state=initialState, action) => {
   switch(action.type) {
       case ADD_TO_CART: {
-          return {...state, cart: [...state.cart, action.aircraft]}
+          return null
       }
       case REMOVE_FROM_CART: {
-          return {...state, cart: [...state.filter((aircraft)=>{return (aircraft.id!==action.aircraftId)})]}
+          return null
       }
       case INCREASE_QUANTITY: {
-          return {...state, cart: [...state.map((aircraft)=>{return (aircraft.id===action.aircraftId ? action.aircraft : aircraft)})]}
+          return null
       }
       case DECREASE_QUANTITY: {
-          return {aircraft: action.aircraft}
+          return null
       }
       case GET_TOTAL:
         return null

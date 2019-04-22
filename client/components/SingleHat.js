@@ -20,13 +20,11 @@ class SingleHat extends Component {
 
     return (
       <div className='card'>
-        <div className='card-header'>
-          <h1 className='title'>{this.props.singleHat.name}</h1>
-        </div>
+          <h1 className='title has-text-centered'>{this.props.singleHat.name}</h1>
         <div className='card-image'>
           <img className='card-image is-128x128' src={this.props.singleHat.imageUrl} />
         </div>
-        <div className='card-content'>
+        <div className='card-content has-text-centered'>
           <ul>
             <li>Name: {this.props.singleHat.name}</li>
             <li>Description: {this.props.singleHat.description}</li>
@@ -35,7 +33,7 @@ class SingleHat extends Component {
             <li>Quantity: {this.props.singleHat.quantity}</li>
           </ul>
         </div>
-        <div className='card-footer'>
+        <div className='card-footer has-text-centered'>
           <button className='button is-primary' type="submit" onClick={this.handleClick}>
             Add to Cart
           </button>
