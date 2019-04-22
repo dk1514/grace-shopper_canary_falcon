@@ -15,14 +15,14 @@ export const setSingleHatThunk = id => async dispatch => {
   }
 }
 
-export const addHatThunk = id => async dispatch => {
-  try {
-    const {data} = await axios.get(`/api/hats/${id}`)
-    dispatch(addHat(data))
-  } catch (err) {
-    console.error(err)
-  }
-}
+// export const addHatThunk = id => async dispatch => {
+//   try {
+//     const {data} = await axios.get(`/api/hats/${id}`)
+//     dispatch(addHat(data))
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
 
 export default function(state = {}, action) {
   switch (action.type) {

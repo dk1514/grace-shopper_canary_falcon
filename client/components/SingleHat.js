@@ -1,32 +1,40 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
-import Cart from './Cart'
-import {addToCart} from '../store/cartReducer'
+//bring in a thunk that will let us update the orderhat model
+import {addToCart} from '../store/orders'
+import axios from 'axios'
 
 class SingleHat extends Component {
-
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
   componentDidMount() {
+    console.log('before cdp', this.props)
     this.props.loadSingleHat()
+    console.log('after cdp', this.props)
   }
 
-  handleClick(id) {
-    this.props.addToCart(id)
-    console.log('ADD ONE HAT')
-    console.log('CART CONTENTS', this.props.cart);
+  handleClick() {
+    //when this is clicked update the orderhat model
+    this.props.addHat()
+    axios.post('/cart')
   }
 
   render() {
-
     return (
-      <div className='card'>
-        <div className='card-header'>
-          <h1 className='title'>{this.props.singleHat.name}</h1>
+      <div className="card">
+        <div className="card-header">
+          <h1 className="title">{this.props.singleHat.name}</h1>
         </div>
-        <div className='card-image'>
-          <img className='card-image is-128x128' src={this.props.singleHat.imageUrl} />
+        <div className="card-image">
+          <img
+            className="card-image is-128x128"
+            src={this.props.singleHat.imageUrl}
+          />
         </div>
-        <div className='card-content'>
+        <div className="card-content">
           <ul>
             <li>Name: {this.props.singleHat.name}</li>
             <li>Description: {this.props.singleHat.description}</li>
@@ -35,8 +43,12 @@ class SingleHat extends Component {
             <li>Quantity: {this.props.singleHat.quantity}</li>
           </ul>
         </div>
-        <div className='card-footer'>
-          <button className='button is-primary' type="submit" onClick={this.handleClick}>
+        <div className="card-footer">
+          <button
+            className="button is-primary"
+            type="submit"
+            onClick={this.handleClick}
+          >
             Add to Cart
           </button>
         </div>
@@ -46,16 +58,16 @@ class SingleHat extends Component {
 }
 
 const mSTP = state => {
+  console.log('state', state)
   return {
-    singleHat: state.singleHatReducer,
-    cart: state.cart
+    singleHat: state.singleHatReducer
   }
 }
 
 const mDTP = (dispatch, ownProps) => {
   return {
     loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
-    addToCart: (id) => dispatch(addToCart(id))
+    addHat: () => dispatch(addToCart(ownProps.match.params.id))
   }
 }
 
