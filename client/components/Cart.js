@@ -3,6 +3,26 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeFromCart, increaseQuantity, decreaseQuantity} from '../store/cartReducer'
 
+let hardCodedData = [
+    {
+        id: 1,
+        name: 'red baseball hat',
+        price: 19.99,
+        quantity: 1,
+        imageUrl: '/hatimages/redbaseballcap.jpg',
+        description: 'this is a red baseball hat',
+    },
+    {
+        id: 2,
+        name: 'green baseball hat',
+        price: 19.99,
+        quantity: 1,
+        imageUrl: '/hatimages/greenbaseballcap.jpg',
+        description: 'this is a green baseball hat',
+    }
+]
+let total = 100
+
 class Cart extends Component{
 
     // remove item from cart
@@ -19,51 +39,71 @@ class Cart extends Component{
     }
     render(){
 
-        // let addedItems = this.props.addedItems.length ?
-        //     (
-        //         this.props.addedItems.map(item=>{
-        //             return(
+        let addedItems = hardCodedData.length ?
+            (
+                hardCodedData.map(item=>{
+                    return(
+                        <tr key={item.id}>
+                            <td>
+                                {item.name}
+                            </td>
 
-        //                 <li className="collection-item avatar" key={item.id}>
-        //                             <div className="item-img">
-        //                                 <img src={item.img} alt={item.img} className=""/>
-        //                             </div>
+                            <td>
+                                <figure className='image is-48x48'>
+                                    <img src={item.imageUrl} alt={item.img} className=""/>
+                                </figure>
+                            </td>
 
-        //                             <div className="item-desc">
-        //                                 <span className="title">{item.title}</span>
-        //                                 <p>{item.desc}</p>
-        //                                 <p><b>Price: {item.price}$</b></p>
-        //                                 <p>
-        //                                     <b>Quantity: {item.quantity}</b>
-        //                                 </p>
-        //                                 <div className="add-remove">
-        //                                     <Link to="/cart"><i className="fas carret-up" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
-        //                                     <Link to="/cart"><i className="fas caret-down" onClick={()=>{this.handleSubtractQuantity(item.id)}}>arrow_drop_down</i></Link>
-        //                                 </div>
-        //                                 <button className="button" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
-        //                             </div>
+                            <td>
+                                {item.description}
+                            </td>
 
-        //                         </li>
+                            <td>
+                                ${item.price}
+                            </td>
 
-        //             )
-        //         })
-        //     ):
-            //  (
-            //     <p>Shopping cart is empty.</p>
-            //  )
+                            <td>
+                                {item.quantity}
+                            </td>
+                            
+                            <td>
+                                <div className="add-remove">
+                                    <Link to="/cart"><i className="fas caret-up" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
+                                    <Link to="/cart"><i className="fas caret-down" onClick={()=>{this.handleSubtractQuantity(item.id)}}>arrow_drop_down</i></Link>
+                                </div>
+                            </td>
+
+                            <td>
+                                <button className="button is-danger" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
+                            </td>
+                        </tr>
+                    )
+                })
+            ):
+             (
+                <p>Shopping cart is empty.</p>
+             )
        return(
-            <div className="container">
-                <div className="cart">
-                    <h5>You have ordered:</h5>
-                    <ul className="collection">
-                        {/* {addedItems} */}
-                        ADDED ITEMS GO HERE
-                    </ul>
+            <div>
+                <div>
+                    <h1 className='title'>Your Order:</h1>
+                    <table className="table is-striped">
+                        <thread>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Price</th>                           
+                            <th>Quantity</th>                           
+                            <th>Increase/Decrease</th>                           
+                        </thread>
+                        <tbody>
+                            {addedItems}
+                        </tbody>
+                    </table>
                 </div>
                 <div>
                     <b>Total: ${this.props.total}</b>
                 </div>
-                {/* <Checkout /> */}
                 <div className="checkout">
                     <Link to='/success'>
                         <button className="button is-primary" type='button'>Submit Order</button>

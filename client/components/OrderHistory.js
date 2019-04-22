@@ -9,7 +9,11 @@ import Order from './Order'
 class OrderHistory extends Component {
     render() {
         return (
-            <div>ORDER HISTORY GOES HERE</div>
+            <div>
+                <div className='notification is-danger'>
+                    You currently have no order history.
+                </div>
+            </div>
         )
     }
 }
