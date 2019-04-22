@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 /**
  * ACTION TYPES
@@ -29,9 +28,9 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-export const addToCart = (storage) => ({
+export const addToCart = id => ({
   type: ADD_TO_CART,
-  cart: storage
+  id
 })
 
 export const gotOrders = allOrders => ({
@@ -262,10 +261,15 @@ export default function(state = initialState, action) {
       }
     }
     case ADD_TO_CART: {
-      return {
-        ...state,
-        cart: {...state, cart: action.cart}
+      let newState = {...state}
+      if (!newState.cart[action.id]) {
+        newState.cart[action.id] = 1
+        console.log(newState.cart[action.id])
+      } else {
+        newState.cart[action.id] += 1
+        console.log(newState.cart[action.id])
       }
+      return newState
     }
     default:
       return state
