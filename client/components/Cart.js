@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeFromCart, increaseQuantity, decreaseQuantity} from '../store/cartReducer'
 
 let hardCodedData = [
     {
@@ -27,15 +26,15 @@ class Cart extends Component{
 
     // remove item from cart
     handleRemove = (id)=>{
-        this.props.removeFromCart(id);
+        // this.props.removeFromCart(id);
     }
     // increase quantity
     handleAddQuantity = (id)=>{
-        this.props.increaseQuantity(id);
+        // this.props.increaseQuantity(id);
     }
     // decrease quantity
     handleSubtractQuantity = (id)=>{
-        this.props.decreaseQuantity(id);
+        // this.props.decreaseQuantity(id);
     }
     render(){
 

@@ -2,16 +2,20 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
 import Cart from './Cart'
-import {addToCart} from '../store/cartReducer'
+import {addToCart} from '../store/orders'
 
 class SingleHat extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick=this.handleClick.bind(this)
+  }
 
   componentDidMount() {
     this.props.loadSingleHat()
   }
 
-  handleClick(id) {
-    this.props.addToCart(id)
+  handleClick() {
+    this.props.addHat()
     console.log('ADD ONE HAT')
     console.log('CART CONTENTS', this.props.cart);
   }
@@ -53,7 +57,7 @@ const mSTP = state => {
 const mDTP = (dispatch, ownProps) => {
   return {
     loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
-    addToCart: (id) => dispatch(addToCart(id))
+    addHat: () => dispatch(addToCart(ownProps.match.params.id))
   }
 }
 
