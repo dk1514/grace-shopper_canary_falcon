@@ -86,7 +86,7 @@ class Cart extends Component{
        return(
             <div>
                 <div>
-                    <h1 className='title'>Your Order:</h1>
+                    <h1 className='title'>Your Order</h1>
                     <table className="table is-striped">
                         <thead>
                             <th>Name</th>
@@ -97,7 +97,6 @@ class Cart extends Component{
                         </thead>
                         <tbody>
                             {addedItems}
-                            
                         </tbody>
                     </table>
                 </div>
