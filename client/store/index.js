@@ -7,12 +7,9 @@ import orders from './orders'
 import hat from './hat'
 import singleHatReducer from './singleHatReducer'
 
-const reducer = combineReducers({
-  user,
-  hat,
-  orders,
-  singleHatReducer
-})
+
+const reducer = combineReducers({user, hat, orders, singleHatReducer})
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

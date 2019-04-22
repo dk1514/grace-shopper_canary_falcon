@@ -15,25 +15,14 @@ export class AllHats extends Component {
         <div className="column is-5">
           {this.props.allHats.hats.map(hat => (
             <div className='card' key={hat.id}>
-              <h1 className='title'>{hat.name}</h1>
+              <h1 className='title has-text-centered'>{hat.name}</h1>
               <Link to={`/hats/${hat.id}`}>
                 <img src={hat.imageUrl} alt="hatimage" />
               </Link>
-              <h1 className='subtitle'>${hat.price / 100}</h1>
+              <h1 className='subtitle has-text-centered'>Price: ${hat.price / 100}</h1>
             </div>
           ))}
         </div>
-        {/* <ul className="column is-5">
-          {this.props.allHats.hats.map(hat => (
-            <li key={hat.id}>
-              <h1 className='title'>{hat.name}</h1>
-              <Link to={`/hats/${hat.id}`}>
-                <img id="hatImage" src={hat.imageUrl} alt="hatimage" />
-              </Link>
-              <h1>${hat.price / 100}</h1>
-            </li>
-          ))}
-        </ul> */}
       </div>
     )
   }

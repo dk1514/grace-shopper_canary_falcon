@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Cart from './components/Cart'
 import OrderSuccess from './components/OrderSuccess'
+import OrderHistory from './components/OrderHistory'
 import {FrontPage} from './components/FrontPage'
 import AllHats from './components/AllHats'
 import SingleHat from './components/SingleHat'
@@ -26,6 +27,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/home" component={FrontPage} />
+        <Route path="/order-history" component={OrderHistory} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
@@ -38,6 +40,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/order-history" component={OrderHistory} />
             <Route path="/cart" component={Cart} />
             <Route path="/success" component={OrderSuccess} />
             <Route exact path="/hats" component={AllHats} />

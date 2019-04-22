@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
-//bring in a thunk that will let us update the orderhat model
+import Cart from './Cart'
 import {addToCart} from '../store/orders'
-import axios from 'axios'
+
 
 class SingleHat extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick=this.handleClick.bind(this)
   }
   componentDidMount() {
     console.log('before cdp', this.props)
@@ -17,24 +17,20 @@ class SingleHat extends Component {
   }
 
   handleClick() {
-    //when this is clicked update the orderhat model
     this.props.addHat()
-    axios.post('/cart')
+    console.log('ADD ONE HAT')
+    console.log('CART CONTENTS', this.props.cart);
   }
 
   render() {
     return (
-      <div className="card">
-        <div className="card-header">
-          <h1 className="title">{this.props.singleHat.name}</h1>
+      <div className='card'>
+          <h1 className='title has-text-centered'>{this.props.singleHat.name}</h1>
+        <div className='card-image'>
+          <img className='card-image is-128x128' src={this.props.singleHat.imageUrl} />
         </div>
-        <div className="card-image">
-          <img
-            className="card-image is-128x128"
-            src={this.props.singleHat.imageUrl}
-          />
-        </div>
-        <div className="card-content">
+        <div className='card-content has-text-centered'>
+
           <ul>
             <li>Name: {this.props.singleHat.name}</li>
             <li>Description: {this.props.singleHat.description}</li>
@@ -43,12 +39,10 @@ class SingleHat extends Component {
             <li>Quantity: {this.props.singleHat.quantity}</li>
           </ul>
         </div>
-        <div className="card-footer">
-          <button
-            className="button is-primary"
-            type="submit"
-            onClick={this.handleClick}
-          >
+s
+        <div className='card-footer has-text-centered'>
+          <button className='button is-primary' type="submit" onClick={this.handleClick}>
+
             Add to Cart
           </button>
         </div>
