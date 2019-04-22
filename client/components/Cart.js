@@ -87,13 +87,15 @@ class Cart extends Component{
             <div>
                 <div>
                     <h1 className='title'>Your Order</h1>
-                    <table className="table is-striped">
+                    <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                         <thead>
                             <th>Name</th>
                             <th>Image</th>
                             <th>Description</th>
                             <th>Price</th>                           
                             <th>Quantity</th>                           
+                            <th>Change Quantity</th>                           
+                            <th>Remove Item</th>                           
                         </thead>
                         <tbody>
                             {addedItems}
