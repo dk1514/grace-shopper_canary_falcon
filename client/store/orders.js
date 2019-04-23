@@ -225,7 +225,9 @@ export default function(state = initialState, action) {
   let newState = {...state}
   switch (action.type) {
     case REMOVE_ITEM: {
+      newState.cart[action.item.id].quantity = 0
       delete newState.cart[action.item.id]
+      return newState
     }
     case EDIT_QUANTITY: {
       if (
