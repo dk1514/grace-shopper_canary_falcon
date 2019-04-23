@@ -6,9 +6,6 @@ router.get('/', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
       const users = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
         attributes: ['id', 'email']
       })
       res.json(users)
@@ -160,7 +157,6 @@ router.put('/:userId/editquantity', async (req, res, next) => {
       })
       await updateJoinTable.update({
         quantity: +req.body.quantity
-        // historicPrice: req.body.product.price
       })
       let returnCart = await Order.findOne({
         where: {isCart: true, userId},
@@ -190,7 +186,6 @@ router.put('/:userId/checkout', async (req, res, next) => {
         Hat.findOne({where: {id: product.id}})
       )
       const dbProductsArray = await Promise.all(productPromises)
-      // turn fetched products into promises of added products
       const updateJoinTablePromises = dbProductsArray.map(product =>
         OrderHat.findOne({
           where: {orderId: cart.id, productId: product.id}

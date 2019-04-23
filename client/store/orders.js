@@ -239,12 +239,10 @@ export default function(state = initialState, action) {
     }
     case ADD_TO_CART: {
       if (!newState.cart[action.item.id]) {
-        console.log('the item does not exist, add one to the cart!')
         newState.cart[action.item.id] = action.item
         newState.cart[action.item.id].quantity = 1
         return newState
       } else {
-        console.log('the item exists, update quantity!')
         newState.cart[action.item.id].quantity++
         return newState
       }
