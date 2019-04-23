@@ -1,20 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-/*
-product fields:
-name
-color
-type
-sku
-price
-manufacturer
-imageUrl
-description
-
-//multiple images
-
-*/
 const Hat = db.define('hat', {
   name: {
     type: Sequelize.STRING,
