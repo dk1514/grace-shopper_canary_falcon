@@ -1,5 +1,4 @@
 import React from 'react'
-import EditCheckout from './EditCheckout'
 
 const Order = props => {
     const {id, userId, isCart, isShipped, createdAt, hats} = props.order

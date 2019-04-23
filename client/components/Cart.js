@@ -1,34 +1,81 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {addToCart, editQuantity, removeItem} from '../store/orders'
 
 class Cart extends Component {
-  // remove item from cart
-  handleRemove = id => {
-    this.props.removeFromCart(id)
-  }
-  // increase quantity
-  handleAddQuantity = id => {
-    this.props.increaseQuantity(id)
-  }
-  // decrease quantity
-  handleSubtractQuantity = id => {
-    this.props.decreaseQuantity(id)
-  }
   render() {
-    console.log('from cart render', this.props)
+    let {cart} = this.props
+    let currentCart = Object.values(cart)
+    let addedItems = Object.values(cart).length ? (
+      currentCart.map(item => {
+        console.log(item)
+        return (
+          <tr key={item.id}>
+            <td>{item.name}</td>
+
+            <td>
+              <figure className="image is-48x48">
+                <img src={item.imageUrl} alt={item.img} className="" />
+              </figure>
+            </td>
+
+            <td>{item.description}</td>
+
+            <td>${item.price / 100}</td>
+
+            <td>{item.quantity}</td>
+
+            <td>
+              <div>
+                <button
+                  className="button is-success"
+                  onClick={() => this.props.handleAdd(item)}
+                >
+                  Increase
+                </button>
+                <button
+                  className="button is-warning"
+                  onClick={() => this.props.handleSubtract(item)}
+                >
+                  Decrease
+                </button>
+              </div>
+            </td>
+
+            <td>
+              <button
+                className="button is-danger"
+                onClick={() => this.props.handleRemove(item)}
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        )
+      })
+    ) : (
+      <p>Shopping cart is empty.</p>
+    )
+
     return (
-      <div className="container">
-        <div className="cart">
-          <h5>
-            You have ordered:{Object.keys(this.props.state.orders.cart)[0]}
-          </h5>
-          <ul className="collection">ADDED ITEMS GO HERE</ul>
-        </div>
+      <div>
         <div>
-          <b>Total: ${this.props.total}</b>
+          <h1 className="title">Your Order</h1>
+          <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Change Quantity</th>
+              <th>Remove Item</th>
+            </thead>
+            <tbody>{addedItems}</tbody>
+          </table>
         </div>
-        {/* <Checkout /> */}
+        <div>Total: 0</div>
         <div className="checkout">
           <Link to="/success">
             <button className="button is-primary" type="button">
@@ -42,12 +89,17 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('from state', state)
+  console.log(state.orders.cart)
   return {
-    state
+    cart: state.orders.cart
   }
 }
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    // totalCartPrice: cart => dispatch(cartSumProduct(cart))
+    handleAdd: item => dispatch(addToCart(item)),
+    handleSubtract: item => dispatch(editQuantity(item)),
+    handleRemove: item => dispatch(removeItem(item))
+  }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

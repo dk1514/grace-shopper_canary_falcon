@@ -1,40 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setSingleHatThunk} from '../store/singleHatReducer'
-//bring in a thunk that will let us update the orderhat model
+
 import {addToCart} from '../store/orders'
-import axios from 'axios'
 
 class SingleHat extends Component {
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
-  }
   componentDidMount() {
-    console.log('before cdp', this.props)
     this.props.loadSingleHat()
-    console.log('after cdp', this.props)
-  }
-
-  handleClick() {
-    //when this is clicked update the orderhat model
-    this.props.addHat()
-    axios.post('/cart')
+    console.log(this)
   }
 
   render() {
     return (
       <div className="card">
-        <div className="card-header">
-          <h1 className="title">{this.props.singleHat.name}</h1>
-        </div>
+        <h1 className="title has-text-centered">{this.props.singleHat.name}</h1>
         <div className="card-image">
           <img
             className="card-image is-128x128"
             src={this.props.singleHat.imageUrl}
           />
         </div>
-        <div className="card-content">
+        <div className="card-content has-text-centered">
           <ul>
             <li>Name: {this.props.singleHat.name}</li>
             <li>Description: {this.props.singleHat.description}</li>
@@ -43,11 +29,11 @@ class SingleHat extends Component {
             <li>Quantity: {this.props.singleHat.quantity}</li>
           </ul>
         </div>
-        <div className="card-footer">
+        <div className="card-footer has-text-centered">
           <button
             className="button is-primary"
             type="submit"
-            onClick={this.handleClick}
+            onClick={() => this.props.handleClick(this.props.singleHat)}
           >
             Add to Cart
           </button>
@@ -58,16 +44,17 @@ class SingleHat extends Component {
 }
 
 const mSTP = state => {
-  console.log('state', state)
   return {
-    singleHat: state.singleHatReducer
+    singleHat: state.singleHatReducer,
+    cart: state.cart
   }
 }
 
 const mDTP = (dispatch, ownProps) => {
   return {
     loadSingleHat: () => dispatch(setSingleHatThunk(ownProps.match.params.id)),
-    addHat: id => dispatch(addToCart(id))
+    addHat: () => dispatch(addToCart(ownProps.match.params.id)),
+    handleClick: singleHat => dispatch(addToCart(singleHat))
   }
 }
 

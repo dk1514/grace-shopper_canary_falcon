@@ -3,17 +3,18 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
+// const CART_SUM_PRODUCT = 'CART_SUM_PRODUCT'
 const GET_ORDERS = 'GET_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_CART = 'GET_CART'
 const GET_PAST_ORDERS = 'GET_PAST_ORDERS'
 const EDIT_CART = 'EDIT_CART'
-const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART'
 const CHECKOUT = 'CHECKOUT'
 const CREATE_UNAUTH_ORDER = 'CREATE_UNAUTH_ORDER'
-const EDIT_QUANTITY = 'EDIT_QUANTITY'
 const GET_TOTAL = 'GET_TOTAL'
 const ADD_TO_CART = 'ADD_TO_CART'
+const EDIT_QUANTITY = 'EDIT_QUANTITY'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 
 /**
  * INITIAL STATE
@@ -28,9 +29,10 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-export const addToCart = id => ({
+
+export const addToCart = item => ({
   type: ADD_TO_CART,
-  id
+  item
 })
 
 export const gotOrders = allOrders => ({
@@ -58,14 +60,14 @@ export const editCart = cart => ({
   cart
 })
 
-export const editQuantity = updatedQuantity => ({
+export const editQuantity = item => ({
   type: EDIT_QUANTITY,
-  updatedQuantity
+  item
 })
 
-export const removedProductFromCart = remainedProducts => ({
-  type: DELETE_PRODUCT_FROM_CART,
-  remainedProducts
+export const removeItem = item => ({
+  type: REMOVE_ITEM,
+  item
 })
 
 export const checkedOut = cart => ({
@@ -218,58 +220,32 @@ export const updateCartThunk = id => async dispatch => {
 /**
  * REDUCER
  */
+// eslint-disable-next-line complexity
 export default function(state = initialState, action) {
+  let newState = {...state}
   switch (action.type) {
-    case GET_ORDERS: {
-      return {...state, allOrders: action.allOrders}
-    }
-    case CREATE_ORDER: {
-      return {...state, allOrders: [...state.allOrders, action.order]}
-    }
-    case GET_CART: {
-      return {...state, cart: action.cart}
-    }
-    case GET_PAST_ORDERS: {
-      return {...state, pastOrders: action.pastOrders}
-    }
-    case EDIT_CART: {
-      return {...state, cart: action.cart}
-    }
-    case DELETE_PRODUCT_FROM_CART: {
-      return {...state, cart: action.remainedProducts}
+    case REMOVE_ITEM: {
+      delete newState.cart[action.item.id]
     }
     case EDIT_QUANTITY: {
-      return {...state, cart: action.updatedQuantity}
-    }
-    case CHECKOUT: {
-      return {
-        ...state,
-        pastOrders: [...state.pastOrders, action.cart],
-        cart: {}
-      }
-    }
-    case CREATE_UNAUTH_ORDER: {
-      return {
-        ...state,
-        allOrders: [...state.allOrders, action.cart]
-      }
-    }
-    case GET_TOTAL: {
-      return {
-        ...state,
-        total: action.total
-      }
+      if (
+        newState.cart[action.item.id] &&
+        newState.cart[action.item.id].quantity > 0
+      )
+        newState.cart[action.item.id].quantity--
+      return newState
     }
     case ADD_TO_CART: {
-      let newState = {...state}
-      if (!newState.cart[action.id]) {
-        newState.cart[action.id] = 1
-        console.log(newState.cart[action.id])
+      if (!newState.cart[action.item.id]) {
+        console.log('the item does not exist, add one to the cart!')
+        newState.cart[action.item.id] = action.item
+        newState.cart[action.item.id].quantity = 1
+        return newState
       } else {
-        newState.cart[action.id] += 1
-        console.log(newState.cart[action.id])
+        console.log('the item exists, update quantity!')
+        newState.cart[action.item.id].quantity++
+        return newState
       }
-      return newState
     }
     default:
       return state
