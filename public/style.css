@@ -20,25 +20,9 @@ form div {
   display: inline-block;
 }
 
-/* #AllHatsComponent {
-  background-color: pink;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  justify-items: center;
-  align-items: center;
+.centerTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
-#hatList {
-  justify-content: space-around;
-  justify-items: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-#hatImage {
-  display: block;
-  max-width: 230px;
-  max-height: 95px;
-  width: auto;
-  height: auto;
-} */
