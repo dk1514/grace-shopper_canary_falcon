@@ -17,7 +17,7 @@ async function seed() {
 
   const hats = await Promise.all([
     Hat.create({
-      name: 'red baseball hat',
+      name: 'red baseball cap',
       price: 1999,
       manufacturer: 'hatman',
       description: 'this is a red baseball hat',
@@ -36,7 +36,7 @@ async function seed() {
       name: `frank's fedora`,
       price: 49999,
       manufacturer: 'hatmaster',
-      description: `frank sinatra's iconic fedora. worn by mr sinatra himself`,
+      description: `Frank Sinatra's iconic fedora. worn by mr sinatra himself`,
       quantity: 1,
       imageUrl: '/hatimages/fedora.jpg'
     }),
