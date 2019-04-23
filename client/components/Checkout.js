@@ -1,31 +1,42 @@
 import React from 'react'
-import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
+import StripeCheckout from 'react-stripe-checkout'
 
-const onToken = amount => token =>
+import STRIPE_PUBLISHABLE from './src/stripe'
+import PAYMENT_SERVER_URL from './src/server'
+
+const CURRENCY = 'USD'
+
+const fromEuroToCent = amount => amount * 100
+
+const successPayment = data => {
+  alert('Payment Successful')
+}
+
+const errorPayment = data => {
+  alert('Payment Error')
+}
+
+const onToken = (amount, description) => token =>
   axios
-    .post('/api/charge', {
+    .post(PAYMENT_SERVER_URL, {
+      description,
       source: token.id,
-      amount: amount
+      currency: CURRENCY,
+      amount: fromEuroToCent(amount)
     })
-    .then(() => console.log('payment received'))
-    .catch(() => console.log('payment failed'))
+    .then(successPayment)
+    .catch(errorPayment)
 
-// fetch('/charge', {
-//   method: 'POST',
-//   body: JSON.stringify(token)
-// }).then(response => {
-//   response.json().then(data => {
-//     alert(`We are in business, ${data.email}`)
-//   })
-// }) }
-
-const Checkout = ({amount = 9999}) => (
+const Checkout = ({name, description, amount}) => (
   <StripeCheckout
-    stripeKey="pk_test_xgrPETMf6WI9h6hsoSx0ZuHa00ysdLb7MX"
-    name="testhat"
-    amount={amount}
-    token={onToken(amount)}
+    name={name}
+    description={description}
+    amount={fromEuroToCent(amount)}
+    token={onToken(amount, description)}
+    currency={CURRENCY}
+    stripeKey={STRIPE_PUBLISHABLE}
   />
 )
+
 export default Checkout
