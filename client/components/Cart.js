@@ -5,27 +5,29 @@ import {addToCart, editQuantity, removeItem} from '../store/orders'
 
 class Cart extends Component {
   render() {
-    let {cart} = this.props
+    let {cart} = this.props.cart.orders
     let currentCart = Object.values(cart)
-    let addedItems = Object.values(cart).length ? (
+    console.log('cart', cart)
+    console.log('current cart', currentCart)
+    let total = currentCart.reduce(
+      (accumulator, item) => accumulator + item.quantity * item.price / 100,
+      0
+    )
+    let addedItems = !Object.values(cart).length ? (
+      <p>Shopping cart is empty.</p>
+    ) : (
       currentCart.map(item => {
-        console.log(item)
-        return (
+        return item.quantity > 0 ? (
           <tr key={item.id}>
             <td>{item.name}</td>
-
             <td>
               <figure className="image is-48x48">
                 <img src={item.imageUrl} alt={item.img} className="" />
               </figure>
             </td>
-
             <td>{item.description}</td>
-
             <td>${item.price / 100}</td>
-
             <td>{item.quantity}</td>
-
             <td>
               <div>
                 <button
@@ -52,10 +54,8 @@ class Cart extends Component {
               </button>
             </td>
           </tr>
-        )
+        ) : null
       })
-    ) : (
-      <p>Shopping cart is empty.</p>
     )
 
     return (
@@ -75,7 +75,7 @@ class Cart extends Component {
             <tbody>{addedItems}</tbody>
           </table>
         </div>
-        <div>Total: 0</div>
+        <div>Total: ${total}</div>
         <div className="checkout">
           <Link to="/success">
             <button className="button is-primary" type="button">
@@ -89,14 +89,12 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.orders.cart)
   return {
-    cart: state.orders.cart
+    cart: state
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    // totalCartPrice: cart => dispatch(cartSumProduct(cart))
     handleAdd: item => dispatch(addToCart(item)),
     handleSubtract: item => dispatch(editQuantity(item)),
     handleRemove: item => dispatch(removeItem(item))
