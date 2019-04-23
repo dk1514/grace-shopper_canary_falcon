@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {addToCart, editQuantity, removeItem} from '../store/orders'
+import Checkout from './Checkout'
 
 class Cart extends Component {
   render() {
@@ -77,11 +78,7 @@ class Cart extends Component {
         </div>
         <div>Total: ${total}</div>
         <div className="checkout">
-          <Link to="/success">
-            <button className="button is-primary" type="button">
-              Submit Order
-            </button>
-          </Link>
+          <Checkout description={'Hopefully some hats'} amount={cart.price} />
         </div>
       </div>
     )
