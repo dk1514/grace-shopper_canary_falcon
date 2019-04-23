@@ -44,12 +44,3 @@ router.post('/cart', async (req, res, next) => {
     next(err)
   }
 })
-
-router.post('/cart/:id', async (req, res, next) => {
-  try {
-    if (req.user.isAdmin) {
-    }
-  } catch (err) {
-    next(err)
-  }
-})
