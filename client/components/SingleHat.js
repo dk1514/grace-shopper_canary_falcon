@@ -7,7 +7,6 @@ import {addToCart} from '../store/orders'
 class SingleHat extends Component {
   componentDidMount() {
     this.props.loadSingleHat()
-    console.log(this)
   }
 
   render() {

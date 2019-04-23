@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addToCart, editQuantity, removeItem} from '../store/orders'
-import Checkout from './Checkout'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   render() {
     let {cart} = this.props.cart.orders
     let currentCart = Object.values(cart)
-    console.log('cart', cart)
-    console.log('current cart', currentCart)
     let total = currentCart.reduce(
       (accumulator, item) => accumulator + item.quantity * item.price / 100,
       0
@@ -77,7 +75,9 @@ class Cart extends Component {
         </div>
         <div>Total: ${total.toFixed(2)}</div>
         <div className="checkout">
-          <Checkout description="Hopefully some hats" amount={cart.price} />
+        <Link to='/success'>
+          <button className='button is-primary'>Submit Order</button>
+        </Link>
         </div>
       </div>
     )
