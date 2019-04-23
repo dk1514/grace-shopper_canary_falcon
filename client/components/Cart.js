@@ -76,7 +76,7 @@ class Cart extends Component {
             <tbody>{addedItems}</tbody>
           </table>
         </div>
-        <div>Total: ${total}</div>
+        <div>Total: ${total.toFixed(2)}</div>
         <div className="checkout">
           <Checkout description={'Hopefully some hats'} amount={cart.price} />
         </div>
